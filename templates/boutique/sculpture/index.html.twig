@@ -1,0 +1,176 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sculpture{% endblock %}
+
+{% block body %}
+<div class="container">                    	
+    <div class="containerBoutique">
+        <h3>Sculpture</h3>                        					
+        <div class="articleBoutique">
+
+            {% for article in articles %}
+                <div class="article">                          
+                    <div class="article_photo">
+                        <img src="{{ article.image }}">
+                    </div>
+                    <div class="prix">
+                        <div class="nom_article">
+                            <p>{{ article.title }}</p>
+                        </div>
+                        <div class="achat">
+                            <div class="achat_prix">
+                                <p>{{ article.prix }} €</p>
+                            </div>                                        
+                            <div class="achat_btn">                                            
+                                <button>
+                                    Acheter
+                                </button>                                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="article">                          
+                <div class="article_photo">
+                    <img src="img/boutique/sculpture/alsacien/alsacien1.jpg">
+                </div>
+                <div class="prix">
+                    <div class="nom_article">
+                        <p>- Alsacien en grès blanc -</p>
+                    </div>                                    
+                    <div class="achat">
+                        <div class="achat_prix">
+                            <p>85 €</p>
+                        </div>                                        
+                        <div class="achat_btn">
+                            <form>
+                                <button>
+                                    Acheter
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article">                          
+                <div class="article_photo">
+                    <img src="img/boutique/sculpture/alsacienne/alsacienne1.jpg">
+                </div>
+                <div class="prix">
+                    <div class="nom_article">
+                        <p>- Alsacienne en grès blanc -</p>
+                    </div>
+                    <div class="achat">
+                        <div class="achat_prix">
+                            <p>85 €</p>
+                        </div>                                        
+                        <div class="achat_btn">
+                            <form>
+                                <button>
+                                    Acheter
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article">                          
+                <div class="article_photo">
+                    <img src="img/boutique/sculpture/gardienne/gardienne1.jpg">
+                </div>
+                <div class="prix">
+                    <div class="nom_article">
+                        <p>- La Gardienne -</p>
+                    </div>
+                    <div class="achat">
+                        <div class="achat_prix">
+                            <p>249 €</p>
+                        </div>                                        
+                        <div class="achat_btn">
+                            <form>
+                                <button>
+                                    Acheter
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article">                          
+                <div class="article_photo">
+                    <img src="img/boutique/sculpture/gargouille/gargouille1.jpg">
+                </div>
+                <div class="prix">
+                    <div class="nom_article">
+                        <p>- Gargouille -</p>
+                    </div>
+                    <div class="achat">
+                        <div class="achat_prix">
+                            <p>850 €</p>
+                        </div>                                        
+                        <div class="achat_btn">
+                            <form>
+                                <button>
+                                    Acheter
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article">                          
+                <div class="article_photo">
+                    <img src="img/boutique/sculpture/stormtrooper/stormtrooper1.jpg">
+                </div>
+                <div class="prix">
+                    <div class="nom_article">
+                        <p>- Stormtrooper -</p>
+                    </div>
+                    <div class="achat">
+                        <div class="achat_prix">
+                            <p>650 €</p>
+                        </div>                                        
+                        <div class="achat_btn">
+                            <form>
+                                <button>
+                                    Acheter
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article">                          
+                <div class="article_photo">
+                    <img src="img/boutique/sculpture/table/table1.jpg">
+                </div>
+                <div class="prix">
+                    <div class="nom_article">
+                        <p>- Table en Marbre de Carrare -</p>
+                    </div>
+                    <div class="achat">
+                        <div class="achat_prix">
+                            <p>980 €</p>
+                        </div>                                        
+                        <div class="achat_btn">
+                            <form>
+                                <button>
+                                    Acheter
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>              
+            
+                                        
+        </div>
+    </div>
+</div>
+{% endblock %}

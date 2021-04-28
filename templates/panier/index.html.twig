@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="panier">
+        <div class="panier_empty">
+            Votre panier est vide
+        </div>
+        <div class="panier_titre">
+            <button>COMMANDER</button>
+        </div>
+
+        <div class="panier_article">
+            <div class="panier_article_photo">						
+                <i class="fas fa-cart-arrow-down caddie"></i>
+            </div>
+            <div class="panier_info">
+                <div class="panier_info_titre">
+                    <h4>Titre de l'article</h4>
+                </div>
+                <div class="panier_info_description">
+                    <div class="panier_info_description_description">
+                        Description de l'article<br>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut a vero soluta similique quaerat aut hic nihil velit nemo ex, libero suscipit voluptate quia repudiandae dolore pariatur deleniti, sunt commodi.
+                    </div>							
+                    <div class="panier_info_description_poids">
+                        ( 99/kg )
+                    </div>
+                    <div class="panier_info_prix">
+                        PRIX
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="retour_boutique">
+            <a href="{{ path('boutique') }}">Voir la boutique</a>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

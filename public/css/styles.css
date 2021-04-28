@@ -1,0 +1,811 @@
+/*----------------Marge à 0 !!!!-------------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/*------------Ajouter police-------------*/
+@font-face {
+  font-family: "stonecrossregular";
+  src: url("fonts/stonecross/stonecross-webfont.woff2") format("woff2"),
+    url("fonts/stonecross/stonecross-webfont.woff") format("woff");
+}
+
+/*---------Elements de la page---------------*/
+body {
+  background: url("../img/background/fond_1.jpg") fixed no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  color: #edebeb;
+}
+html {
+  font-size: 16px;
+}
+
+/*-------------------HEADER------------------*/
+#toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+}
+#titre_principale {
+  display: flex;
+  flex-direction: column;
+}
+h1 {
+  color: #8a2a2d;
+  font-size: 3.3em;
+  font-family: Constantia, fantasy, sans-serif;
+  text-shadow: rgba(0, 0, 0, 0.3) 2px 4px 3px;
+}
+h2 {
+  color: #edebeb;
+  text-shadow: rgba(0, 0, 0, 0.3) 2px 4px 3px;
+  font-family: stonecrossregular, cursive, sans-serif;
+  font-size: 1.5rem;
+}
+h3 {
+  color: #707070;
+  font-size: 1.6em;
+  font-family: "Ubuntu", sans-serif;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+h4/*titre boutique*/ {
+  color: #edebeb;
+  text-align: center;
+  font-size: 1.3em;
+}
+h5/*titre rubrique*/ {
+  color: #edebeb;
+  text-align: center;
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  font-family: "Ubuntu", sans-serif;
+}
+#toolbar a {
+  text-decoration: none !important;
+}
+/*-------------------------MENU-------------------*/
+nav {
+  margin-right: 7%;
+}
+nav ul {
+  list-style-type: none;
+  display: flex;  
+}
+nav a {  
+  text-decoration: none;
+  color: #edebeb;  
+  font-size: 1.1em;
+}
+nav li {  
+  padding: 10px 20px;
+  color: #edebeb;  
+  font-size: 1.1em;
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+
+nav li:hover {
+  background-color: #212121;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px black;
+  border: 2px solid #8a2a2d;   
+  opacity: 0.9;
+  animation: slidein 0.8s;
+}
+nav li a:hover { 
+  color: #edebeb;
+  text-decoration: none;
+}
+.selected_page {
+  border: 2px solid #8a2a2d;
+  background-color: #8a2a2d;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px black;  
+}
+/*-----Menu deroulant----*/
+.arrow_down{
+  padding-left: 7px;
+}
+nav ul li ul {
+  display: none;
+}
+nav ul li:hover ul{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #8a2a2d;  
+}
+nav li ul{
+  position: absolute;  
+  transform: translate(-14.5%);
+  background-color: #212121;  
+  border-radius: 5px;
+}
+nav li ul li:hover {
+  border: 2px solid #8a2a2d; 
+}
+/*------nightmode-----*/
+.nightmode_flex {
+  position: absolute;
+  top: 10px;
+  right: 10px;  
+}
+.nightmode {  
+  opacity: 0;
+  position: absolute;
+}
+.nightmode:checked + .select_nightmode .ball { 
+  transform: translateX(24px);
+}
+.select_nightmode {
+  cursor: pointer;
+  background-color: #212121;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  height: 26px;
+  width: 50px;
+}
+.ball {
+  background-color: #fff; 
+  border-radius: 50%; 
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  transition: transform 0.25s linear;
+}
+.fa-moon {
+  color: #F2B705;
+}
+.fa-sun {
+  color: #F2B705;
+}
+.nightmode_on_black {  
+  background-color: #111 !important;
+}
+.nightmode_off_white {  
+  background-color: #fff !important;
+}
+.nightmode_off_black {  
+  color: #212121 !important;  
+}
+.nightmode_on_white {  
+  color: #fff !important;  
+}
+
+
+
+/*-----------------------Accueil---------------------*/
+.container {
+  background-color: #212121;
+}
+.titre_accueil {
+  display: flex;
+  justify-content: center;
+}
+/*-------------Portfolio-----------*/
+.portfolio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.portfolio a {
+  text-decoration: none;
+  border: 2px solid #8a2a2d;
+  background-color: #8a2a2d;
+  box-shadow: 5px 5px 15px black;
+  border-radius: 2px;
+  color: #fff;
+  margin: 50px;
+  padding: 0.5rem 1.2rem;
+}
+.portfolio a:hover {
+  border: 2px solid #8a2a2d;
+  background-color: #212121;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px black;  
+  opacity: 0.9;
+  animation: slidein 0.8s forwards;
+}
+
+/*-----------------Carousel_Accueil----------------*/
+.carousel {
+  display: flex; 
+  justify-content: center;
+  align-items: center;  
+}
+.cadre {  
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.slideshow {
+  margin: 10px;
+  width: 450px;
+  height: 450px;
+  overflow: hidden; 
+}
+.slideshow ul {  
+  width: 700%;
+  height: 400px;
+  padding:0; margin:0;
+  list-style: none;
+}
+.slideshow li {
+ float: left;
+}
+
+.precedent,
+.suivant {  
+  color: #edebeb;
+  padding: 1.4rem;
+  font-size: 30px;
+  position: relative; 
+}
+.precedent::after,
+.suivant::after {
+  content: "";
+  position: absolute;  
+  top: 14%;
+  left: 13%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+}
+.precedent:hover,
+.suivant:hover {
+  cursor: pointer;
+  animation: agrandir 1s;
+  animation-fill-mode: forwards;
+}
+.nightmode_on_rond:hover::after {
+  animation: agrandirRondBlanc 1s;
+  animation-fill-mode: forwards;
+}
+.nightmode_off_rond:hover::after {
+  animation: agrandirRondNoir 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes agrandirRondBlanc {
+  from {
+    transform: scale(0);
+    border: 0px solid #fff;
+  }  
+  to {
+    transform: scale(1);
+    border: 1px solid #fff;
+  }
+}
+@keyframes agrandirRondNoir {
+  from {
+    transform: scale(0);
+    border: 0px solid #111;
+  }  
+  to {
+    transform: scale(1);
+    border: 1px solid #111;
+  }
+}
+@keyframes agrandir {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/*----------------------Galerie--------------------*/
+#galerie {
+  padding: 30px 90px;  
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.galerie_cadre img {
+  margin: 10px 4px 10px;
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+}
+.galerie_cadre img:hover {
+  cursor: pointer;
+  animation: slideInGalerie 0.7s forwards;  
+}
+
+@keyframes slideInGalerie {
+  from {
+    transform: scale(1);
+    border-radius: 100%;
+  }
+  to {
+    transform: scale(1.1);
+    border-radius: 0%;
+  }
+}
+/*Agrandissement*/
+.galerie_overlay { 
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 150%;      
+  background-color:#212121;
+  opacity: 0.9;  
+}
+.galerie_affichage {  
+  position: absolute; 
+  height: 80%;
+  width: 80%;   
+  display: none;
+  justify-content: center;
+  align-items: center;
+}.galerie_affichage_photo {
+  position: absolute; 
+  height: 100%;  
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.galerie_affichage_photo img{ 
+  border: 2px solid #212121;
+  position: relative;
+  z-index: 2;  
+  height: 100%;  
+}
+.fermer_affichage {  
+  color: #8a2a2d;
+  font-size: 2.5rem;
+  position: absolute;
+  z-index: 3;
+  top: 20px;
+  right: 38px;
+  cursor: pointer;
+}
+.fermer_affichage:hover,
+.galerie_suivant:hover,
+.galerie_precedent:hover {
+  animation: agrandir 1s;
+  animation-fill-mode: forwards;
+}
+.galerie_suivant { 
+  color: #8a2a2d;
+  font-size: 2.5rem;
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  right: -30px;
+  cursor: pointer;
+}
+.galerie_precedent {  
+  color: #8a2a2d;
+  font-size: 2.5rem;
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: -30px;
+  cursor: pointer;
+}
+
+
+/*----------------------Boutique------------------*/
+#boutique {
+  display: flex;
+  justify-content: center;
+}
+#boutique h5{
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #8a2a2d;
+}
+#bougeoir img,
+#lampe img,
+#sculpture img {
+  border-radius: 2px;
+  max-width: 300px;
+  max-height: 300px;
+}
+#bougeoir,
+#lampe,
+#sculpture {
+  margin: 1.5em;
+  margin-bottom: 45px;
+}
+
+#bougeoir img:hover,
+#lampe img:hover,
+#sculpture img:hover {
+  animation: slidein 0.8s;  
+}
+@keyframes slidein {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/*-----------------Categorie-Boutique----------*/
+
+.containerBoutique {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.containerBoutique h3 {
+  font-size: 30px;
+  font-family: "UnifrakturMaguntia", "Times New Roman", Times, sans-serif;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.articleBoutique {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;  
+}
+.article {
+  width: 200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.article img:hover {
+  animation: slidein 0.8s;
+  cursor: pointer;
+}
+.articleBoutique img {
+  width: 150px;
+  height: 200px;
+}
+.prix {
+  width: 100%;
+  padding-top: 5px;
+}
+.prix :nth-child(2) {
+  font-size: 20px;
+  font-weight: bold;
+  color: #707070;
+}
+.nom_article {
+  text-align: center;
+  padding-bottom: 5px;
+}
+.achat {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 7px;
+  border-bottom: 1px solid #8a2a2d;
+  border-left: 2px solid #8a2a2d;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 1rem;
+}
+.achat_prix {
+  padding-left: 10px;
+}
+.achat_btn button {
+  animation: agrandir 1s forwards;
+  cursor: pointer;
+  border: 0;
+  padding: 5px;
+  border-radius: 1rem;
+}
+
+/*-----------------------Contact---------------------*/
+.contact {
+  display: flex;
+}
+.contact_left {
+  width: 50%;
+  height: 100%;
+}
+.contact_right {
+  width: 50%;
+  height: 100%;
+}
+.contact_left_photo img {
+  padding: 20px;
+  height: 400px;
+  width: auto;
+}
+.contact_bottom_texte {
+  text-align: center;
+  padding: 20px;
+}
+.contact_right_texte {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.contact_right_texte_info {
+  line-height: 50px;
+}
+
+/*-------------------PANIER-------------*/
+.panier{
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+}
+.panier_empty{
+  font-size: 2.2rem;
+  height: 50px;  
+  color: #edebeb;    
+  margin: 2rem;
+}
+.panier_titre button{
+  height: 50px;
+  width: 200px;
+  color: #edebeb;  
+  background-color: #8a2a2d;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 2rem;  
+  display: none;
+}
+.panier_article{
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #8a2a2d;
+  border-bottom: 1px solid #8a2a2d;
+}
+.panier__article_photo{
+  height: 400px;
+  width: 400px;  
+}
+.fa-cart-arrow-down{
+  padding: 40px;
+  font-size: 150px;
+}
+.panier_article_photo img{
+  height: 300px;
+  width: 300px;
+  padding: 40px;
+}
+.panier_info{  
+  width: 70%;
+  text-align: center;
+  display: none;
+}
+.panier_info_titre{
+  padding: 40px;
+}
+
+.panier_info_description_description{
+  padding-bottom: 40px;
+}
+.panier_info_description_poids{
+  padding-bottom: 40px;
+}
+.panier_info_prix{
+  padding-bottom: 40px;
+}
+.retour_boutique{
+  margin: 40px;
+}
+.retour_boutique :hover{
+  border: 2px solid #8a2a2d; 
+  background-color: #212121;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px black;  
+  opacity: 0.7;  
+}
+.retour_boutique a{  
+  font-size: 2rem;
+  color: #edebeb;
+  background-color: #8a2a2d;
+  border: 1px solid black;
+  border-radius: 4px;
+  text-align: center;  
+  text-decoration: none;
+  padding: 1rem 2rem;
+  box-shadow: 5px 5px 15px black;  
+}
+
+
+
+/*-----------------------Footer-----------------------*/
+
+#favicon {
+  margin: 10px 20px;
+}
+#favicon img {
+  height: 40px;
+  width: 40px;
+}
+#contact {
+  margin: 10px 20px;
+  border: 1px solid#fff;
+  width: 250px;
+  border-radius: 15px;
+}
+#contact a {
+  font-family: "Ubuntu", sans-serif;
+  color: #fff;
+  text-decoration: none;  
+}
+#contact:hover {
+  background-color: #212121;
+  opacity: 0.7;
+}
+.contact_titre {
+  font-size: 1.7rem;
+  padding: 10px 0 20px 10px;
+}
+.contact_mail {
+  padding: 0 0 10px 10px;
+}
+.contact_telephone {
+  padding: 0 0 20px 10px;
+}
+
+.copyrights_cgv {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Ubuntu", sans-serif;
+  color: #fff;
+  text-decoration: none;
+  margin: 10px 20px;
+}
+.copyrights_cgv p {
+  display: flex;
+  align-items: center;
+}
+.cgv {
+  font-family: "Ubuntu", sans-serif;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 15px;
+}
+.copyrights_cgv a:hover {
+  background-color: #212121;
+  opacity: 0.7;
+}
+
+/*Media Queries*/
+/*--Phones---------------------------------------------*/
+@media (max-width: 480px) {
+  .left_arrow {
+    display: none;
+  }
+  .right_arrow {
+    display: none;
+  }
+  #galerie {
+    padding: 10px 45px;
+  }
+  /*---CONTACT---*/
+
+  .container_contact {    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }  
+  .contact {
+    height: 100%;
+    display: contents;
+  }
+  .contact_left{
+  display: flex;
+  justify-content: center;
+  }
+
+  .contact_left_photo img {
+  padding: 20px 0px 0px 0px;
+  width: auto;
+  height: 37vh; 
+  }
+}
+/*----Larges Phones----------------------------------------------------*/
+@media (max-width: 580px) {
+  .carousel_selector_photo {
+    display: none;
+  }
+  .fa-arrow-left,
+  .fa-arrow-right {
+    color: #edebeb;
+    padding: 0.8rem;
+    font-size: 20px;
+  }
+  /*-----CONTACT----*/
+
+  .contact_right_texte_info {
+    line-height: 30px;
+  }
+  
+  .contact {
+    height: 250px;
+  }
+}
+/*Tablets--------------------------------------------------*/
+@media (max-width: 768px) {
+  .photo_center img {
+    height: 400px;
+    width: 400px;
+  }
+  .carousel_selector_photo img {
+    height: 120px;
+    padding: 0 0.5rem 0.5rem 0.5rem;
+  }
+
+  /*----CONTACT----*/
+  .contact_right_texte_info {
+    line-height: 25px;
+  }
+  .contact {
+    height: 250px !important;
+  }
+}
+/*Desktops-------------------------------------------------------------*/
+@media (max-width: 920px) {
+  
+  .titre_accueil {
+    flex-wrap: wrap;
+  }
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  /*-------BOUTIQUE-----*/
+  #boutique {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  /*-----CONTACT----*/
+  .contact {
+    height: 350px;
+  }
+}
+@media (max-width: 985px) { 
+  /*-----MENU----*/
+  #toolbar {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+@media (max-width: 1100px) { 
+  /*-----CONTACT----*/
+  .contact {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+/*Large Desktops--------------------------------------------------*/
+@media (max-width: 1200px) {
+  .photo_right img {
+    display: none;
+  }
+  .photo_left img {
+    display: none;
+  }
+}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique{% endblock %}
+
+{% block body %}
+    <div class = "container">			
+				<div id = "boutique">
+					<div id = "bougeoir">
+						<h5>Bougeoir</h5>
+						<a href="{{path('bougeoir')}}"><img src="img/boutique/bougeoir/yingyang.jpg"></a>
+					</div>
+					<div id = "lampe">
+						<h5>Lampe</h5>
+						<a href="{{path('lampe')}}"><img src="img//boutique/lampe/lampe1.jpg"></a>
+					</div>
+					<div id = "sculpture">
+						<h5>Sculpture</h5>
+						<a href="{{path('sculpture')}}"><img src="img/boutique/sculpture/gardienne/gardienne1.jpg"></a>
+					</div>
+				</div>
+			</div>
+{% endblock %}
