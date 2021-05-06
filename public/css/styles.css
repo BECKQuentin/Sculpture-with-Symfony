@@ -13,9 +13,10 @@
 
 /*---------Elements de la page---------------*/
 body {
-  background: url("../img/background/fond_1.jpg") fixed no-repeat;
+  /* background: url("../img/background/fond_1.jpg") fixed no-repeat;
   background-size: cover;
-  -webkit-background-size: cover;
+  -webkit-background-size: cover; */
+  background-color: #6E3930;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #edebeb;
 }
@@ -23,7 +24,7 @@ html {
   font-size: 16px;
 }
 
-/*-------------------HEADER------------------*/
+/*-----------HEADER----------*/
 #toolbar {
   display: flex;
   justify-content: space-between;
@@ -36,8 +37,9 @@ html {
   display: flex;
   flex-direction: column;
 }
+/*-----------GENERAL--------*/
 h1 {
-  color: #8a2a2d;
+  color: #A83236;
   font-size: 3.3em;
   font-family: Constantia, fantasy, sans-serif;
   text-shadow: rgba(0, 0, 0, 0.3) 2px 4px 3px;
@@ -68,6 +70,10 @@ h5/*titre rubrique*/ {
   margin-bottom: 20px;
   font-family: "Ubuntu", sans-serif;
 }
+.table th,
+.table td {
+  color: #fff;
+}
 #toolbar a {
   text-decoration: none !important;
 }
@@ -82,23 +88,23 @@ nav ul {
 nav a {  
   text-decoration: none;
   color: #edebeb;  
-  font-size: 1.1em;
+  font-size: 1.1em;  
 }
 nav li {  
-  padding: 10px 20px;
+  padding: 5px 20px;
   color: #edebeb;  
   font-size: 1.1em;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 2px solid rgba(0, 0, 0, 0);
 }
 
 nav li:hover {
   background-color: #212121;
-  border-radius: 5px;
+  border-radius: 3px;
   box-shadow: 5px 5px 15px black;
   border: 2px solid #8a2a2d;   
   opacity: 0.9;
-  animation: slidein 0.8s;
+  animation: growUp 0.8s;
 }
 nav li a:hover { 
   color: #edebeb;
@@ -107,7 +113,7 @@ nav li a:hover {
 .selected_page {
   border: 2px solid #8a2a2d;
   background-color: #8a2a2d;
-  border-radius: 5px;
+  border-radius: 3px;
   box-shadow: 5px 5px 15px black;  
 }
 /*-----Menu deroulant----*/
@@ -118,6 +124,8 @@ nav ul li ul {
   display: none;
 }
 nav ul li:hover ul{
+  margin: 0 !important;
+  padding: 0 !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +133,8 @@ nav ul li:hover ul{
 }
 nav li ul{
   position: absolute;  
-  transform: translate(-14.5%);
+  z-index: 2;
+  transform: translate(-15%);
   background-color: #212121;  
   border-radius: 5px;
 }
@@ -188,15 +197,16 @@ nav li ul li:hover {
 
 
 
-/*-----------------------Accueil---------------------*/
+/*--------------Accueil---------*/
 .container {
   background-color: #212121;
+  max-width: none !important;
 }
 .titre_accueil {
   display: flex;
   justify-content: center;
 }
-/*-------------Portfolio-----------*/
+/*-------------Portfolio----------*/
 .portfolio {
   display: flex;
   justify-content: center;
@@ -218,7 +228,7 @@ nav li ul li:hover {
   border-radius: 5px;
   box-shadow: 5px 5px 15px black;  
   opacity: 0.9;
-  animation: slidein 0.8s forwards;
+  animation: growUp 0.8s forwards;
 }
 
 /*-----------------Carousel_Accueil----------------*/
@@ -270,7 +280,7 @@ nav li ul li:hover {
 .precedent:hover,
 .suivant:hover {
   cursor: pointer;
-  animation: agrandir 1s;
+  animation: growUpp 1s;
   animation-fill-mode: forwards;
 }
 .nightmode_on_rond:hover::after {
@@ -281,37 +291,7 @@ nav li ul li:hover {
   animation: agrandirRondNoir 1s;
   animation-fill-mode: forwards;
 }
-@keyframes agrandirRondBlanc {
-  from {
-    transform: scale(0);
-    border: 0px solid #fff;
-  }  
-  to {
-    transform: scale(1);
-    border: 1px solid #fff;
-  }
-}
-@keyframes agrandirRondNoir {
-  from {
-    transform: scale(0);
-    border: 0px solid #111;
-  }  
-  to {
-    transform: scale(1);
-    border: 1px solid #111;
-  }
-}
-@keyframes agrandir {
-  from {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.3);
-  }
-  to {
-    transform: scale(1.1);
-  }
-}
+
 
 /*----------------------Galerie--------------------*/
 #galerie {
@@ -332,16 +312,6 @@ nav li ul li:hover {
   animation: slideInGalerie 0.7s forwards;  
 }
 
-@keyframes slideInGalerie {
-  from {
-    transform: scale(1);
-    border-radius: 100%;
-  }
-  to {
-    transform: scale(1.1);
-    border-radius: 0%;
-  }
-}
 /*Agrandissement*/
 .galerie_overlay { 
   position: absolute;
@@ -384,7 +354,7 @@ nav li ul li:hover {
 .fermer_affichage:hover,
 .galerie_suivant:hover,
 .galerie_precedent:hover {
-  animation: agrandir 1s;
+  animation: growUppp 1s;
   animation-fill-mode: forwards;
 }
 .galerie_suivant { 
@@ -433,18 +403,7 @@ nav li ul li:hover {
 #bougeoir img:hover,
 #lampe img:hover,
 #sculpture img:hover {
-  animation: slidein 0.8s;  
-}
-@keyframes slidein {
-  from {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-  to {
-    transform: scale(1);
-  }
+  animation: growUp 0.8s;  
 }
 
 /*-----------------Categorie-Boutique----------*/
@@ -473,7 +432,7 @@ nav li ul li:hover {
   align-items: center;
 }
 .article img:hover {
-  animation: slidein 0.8s;
+  animation: growUp 0.8s;
   cursor: pointer;
 }
 .articleBoutique img {
@@ -507,11 +466,13 @@ nav li ul li:hover {
   padding-left: 10px;
 }
 .achat_btn button {
-  animation: agrandir 1s forwards;
-  cursor: pointer;
   border: 0;
-  padding: 5px;
+  padding: 0px 5px;
   border-radius: 1rem;
+}
+.achat_btn button:hover {  
+  animation: growUpp 1s forwards;  
+  cursor: pointer;  
 }
 
 /*-----------------------Contact---------------------*/
@@ -544,6 +505,33 @@ nav li ul li:hover {
 }
 .contact_right_texte_info {
   line-height: 50px;
+}
+
+/*--------------CONEXION----------*/
+#conexion h5{
+  padding: 20px;
+}
+
+.btn_conexion {
+  color: #fff;
+  background-color: #8a2a2d;
+}
+.btn_conexion a{
+  text-decoration: none;
+  color: #edebeb;
+  background-color: #8a2a2d;
+}
+.btn_conexion a:hover {
+  color: #212121;
+}
+/*--------Inscription------*/
+.inscription_form {  
+  display: flex;
+  justify-content: center;
+}
+.btn_profil {
+  text-decoration: none;
+  color: #fff;
 }
 
 /*-------------------PANIER-------------*/
@@ -641,9 +629,9 @@ nav li ul li:hover {
 }
 #contact {
   margin: 10px 20px;
-  border: 1px solid#fff;
+  border: 2px solid#fff;
   width: 250px;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 #contact a {
   font-family: "Ubuntu", sans-serif;
@@ -683,11 +671,80 @@ nav li ul li:hover {
   text-decoration: none;
   padding: 5px;
   border: 1px solid white;
-  border-radius: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .copyrights_cgv a:hover {
+  color: #fff;
   background-color: #212121;
   opacity: 0.7;
+}
+
+/*KEYFRAMES*/
+@keyframes agrandirRondBlanc {
+  from {
+    transform: scale(0);
+    border: 0px solid #fff;
+  }  
+  to {
+    transform: scale(1);
+    border: 1px solid #fff;
+  }
+}
+@keyframes agrandirRondNoir {
+  from {
+    transform: scale(0);
+    border: 0px solid #111;
+  }  
+  to {
+    transform: scale(1);
+    border: 1px solid #111;
+  }
+}
+@keyframes growUppp {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+@keyframes growUpp {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+@keyframes growUp {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes slideInGalerie {
+  from {
+    transform: scale(1);
+    border-radius: 100%;
+  }
+  to {
+    transform: scale(1.1);
+    border-radius: 0%;
+  }
 }
 
 /*Media Queries*/
@@ -785,12 +842,7 @@ nav li ul li:hover {
   }
 }
 @media (max-width: 985px) { 
-  /*-----MENU----*/
-  #toolbar {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-  }
+  
 }
 @media (max-width: 1100px) { 
   /*-----CONTACT----*/
@@ -807,5 +859,11 @@ nav li ul li:hover {
   }
   .photo_left img {
     display: none;
+  }
+  /*-----MENU----*/
+  #toolbar {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

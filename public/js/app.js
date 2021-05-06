@@ -10,12 +10,13 @@ $(function(){
         $('.suivant').toggleClass('nightmode_off_rond');
         $('.ball').toggleClass('nightmode_on_black');
         $('.select_nightmode').toggleClass('nightmode_off_white');
-        $('h3').toggleClass('nightmode_off_black'); 
-        $('h4').toggleClass('nightmode_off_black');
-        $('h5').toggleClass('nightmode_off_black'); 
+        $('h3, h4, h5').toggleClass('nightmode_off_black'); 
+        $('th, td, label').toggleClass('nightmode_off_black');
         $('.cadre_contact p').toggleClass('nightmode_off_black');
         $('.panier_empty').toggleClass('nightmode_off_black');
         $('.caddie').toggleClass('nightmode_off_black');
+        $('.link_inscription').toggleClass('nightmode_off_black');
+        
     }
     if (localStorage.getItem('nightmode') == 'off') {
         changeClassNightmode();

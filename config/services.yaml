@@ -4,12 +4,21 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    email_admin: '%env(EMAIL_ADMIN)%'
+    email_developer: '%env(EMAIL_DEVELOPER)%'
+    app_env: '%env(APP_ENV)%'
+    upload_image_directory: '%kernel.project_dir%/public/upload/img'
+    public_image_path: '/upload/img'    
+    enabled_locales: [ fr, en ]
 
 services:
-    # default configuration for services in *this* file
+    # default configuration for services in this file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        #Variables injectées dans TOUS les services
+        bind:
+            $appEnv: '%app_env%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -28,4 +37,17 @@ services:
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # please note that last definitions always replace previous ones
+    App\Service\EmailService:
+        arguments:
+            $emailAdmin: '%email_admin%'
+            $emailDeveloper: '%email_developer%'
+            $appEnv: '%app_env%'
+
+    App\Service\UploadService:
+        arguments:
+            $uploadImageDirectory: '%upload_image_directory%'
+            
+    App\Twig\AppExtension:
+        arguments:
+            $publicImagePath: '%public_image_path%'  

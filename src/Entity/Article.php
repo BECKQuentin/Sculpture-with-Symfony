@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +44,26 @@ class Article
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="articles")
+     */
+    private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="article")
+     */
+    private $commands;
+
+    public function __construct()
+    {        
+        $this->commands = new ArrayCollection();
+    }
+    
+    public function getImageDirectory(): string
+    {
+        return 'boutique';
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +126,36 @@ class Article
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCommands(): Collection
+    {
+        return $this->commands;
+    }
+
+    public function addCommand(Command $command): self
+    {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->removeElement($command)) {
+            // set the owning side to null (unless already changed)
+            if ($command->getArticle() === $this) {
+                $command->setArticle(null);
+            }
+        }
 
         return $this;
     }

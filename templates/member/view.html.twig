@@ -1,0 +1,29 @@
+{% extends 'member/index.html.twig' %}
+
+{% block content %}
+    <div class="offset-lg-4 col-4">
+        <h5 class="mb-3">Mon profil</h5>
+        <div class="">
+            {% if app.user %}
+            <p class="mb-2">{{ user.email }}</p>
+            <p class="mb-2">{{ user.adress }}
+            <br>{{ user.postcode }} - {{ user.city }}
+            <br>
+            </p>
+            {% endif %}
+        </div>
+        
+        
+        <div class="d-flex flex-column">
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('member_update') }}">Voir mes commandes</a>            
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('member_update') }}">Modifier mon profil</a>            
+            {% if is_granted('ROLE_ADMIN') %}
+            @Admin
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('member_listing') }}">Gérer les membres</a>            
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('add_article') }}">Ajouter des Articles</a>            
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('articles_listing') }}">Gérer les Articles</a>            
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('commands_listing') }}">Voir toutes les Commandes</a>            
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

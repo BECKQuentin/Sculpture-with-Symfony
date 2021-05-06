@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="row offset-lg-4 col-4">
+        <div class="col-mx-auto">
+
+            <h1 class="text-center">Inscription</h1>
+            <div>
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}                
+                    {{ form_row(registrationForm.plainPassword) }}
+                    {{ form_row(registrationForm.name) }}
+                    {{ form_row(registrationForm.lastname) }}
+                    {{ form_row(registrationForm.adress) }}
+                    {{ form_row(registrationForm.city) }}
+                    {{ form_row(registrationForm.postcode) }}
+                    {{ form_row(registrationForm.agreeTerms) }} 
+
+                    {{ form_row(registrationForm.submit) }}        
+                {{ form_end(registrationForm) }}
+            </div>
+
+            <div class="modal fade" id="termsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam nostrum assumenda ipsam obcaecati? Cupiditate repellendus officia quasi architecto aspernatur, animi nulla dolorem laboriosam in ipsam placeat explicabo natus nihil. Labore.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">Déjà un compte ? <a href="{{ path('app_login') }}">Connexion</a></div>
+
+        </div>
+    </div>
+
+    
+{% endblock %}

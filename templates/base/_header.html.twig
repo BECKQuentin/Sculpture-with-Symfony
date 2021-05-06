@@ -18,6 +18,22 @@
                     </ul>
                 </li>
                 <li class="{{ route_name == 'contact' ? 'selected_page' }}"><a href="{{ path('contact') }}">Contact</a></li>
+
+                {% if is_granted('ROLE_USER') %}
+				<li class="{{ route_name == 'conexion' ? 'selected_page' }}">
+					<a href="{{ path('redirect_user') }}"><i class="fas fa-user-cog"></i></a>
+				</li>
+				<li class="{{ route_name == 'conexion' ? 'selected_page' }}">
+					<a href="{{ path('app_logout') }}">Déconnexion</a>
+				</li>
+			    {% else %}
+				<li class="{{ route_name == 'conexion' ? 'selected_page' }}">
+	                <a href="{{ path('app_login') }}">Connexion</a>
+				</li>
+			    {% endif %}	
+                
+                {# <li class="{{ route_name == 'conexion' ? 'selected_page' }}"><a href="{{ path('conexion') }}"><i class="fas fa-user"></i></a></li> #}
+                
                 <li class="{{ route_name == 'panier' ? 'selected_page' }}" ><a href="{{ path('panier') }}"><i class="fas fa-shopping-cart"></i></a></li>
                 
                 <div class="nightmode_flex">
