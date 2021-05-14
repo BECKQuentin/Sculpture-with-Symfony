@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Entity\Images;
 use App\Entity\User;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
@@ -17,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AdminController extends AbstractController
 {
     /**
-    * @Route("/", name="admin")
+    * @Route("/admin", name="admin")
     */
     public function index(): Response
     {
@@ -58,21 +59,25 @@ class AdminController extends AbstractController
      */
     public function addArticle(Request $request, UploadService $uploadService)
     {
-        $articles = new Article();
-        $form = $this->createForm(ArticleFormType::class, $articles);
+        $article = new Article();
+        $form = $this->createForm(ArticleFormType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $image = $form->get('image')->getData();
+            $images = $form->get('images')->getData();
 
-            if ($image) {
-                $fileName = $uploadService->uploadImage($image, $articles);
-                $articles->setImage($fileName);
-            }            
+            if ($images) {
+                foreach ($images as $image) {
+                    $fileName = $uploadService->uploadImages($image, $article); 
+                    $img = new Images();                    
+                    $img->setName($fileName);
+                    $article->addImage($img);   
+                }
+            }
             
             $em = $this->getDoctrine()->getManager();
-            $em->persist($articles);
+            $em->persist($article);
             $em->flush();
 
             $this->addFlash('success', "L'article a bien été ajoutée");
@@ -81,7 +86,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/add_article.html.twig', [
             'form' => $form->createView(),
-            'articles' => $articles
+            'articles' => $article
         ]);
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Twig;
 
+use App\Entity\Article;
+use App\Repository\CategorieRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -21,27 +23,27 @@ class AppExtension extends AbstractExtension
             // If your filter generates SAFE HTML, you should add a third
             // parameter: ['is_safe' => ['html']]
             // Reference: https://twig.symfony.com/doc/2.x/advanced.html#automatic-escaping
-            new TwigFilter('image', [$this, 'getImage'])
+            new TwigFilter('image', [$this, 'getImages'])
         ];
     }
-    
-    public function getImage(object $entity, string $nameProperty = 'image'): string
-    {
-        $image = $entity->{'get' . ucwords($nameProperty)}();
 
-        if($image) {
-            return $this->publicImagePath.'/'.$entity->getImageDirectory().'/'.$image;
+    public function getImages(object $entity, string $nameProperty = 'name'): string
+    {
+        $images = $entity->{'get' . ucwords($nameProperty)}();
+
+        if ($images) {
+            return $this->publicImagePath
+                . '/' . $entity->getArticle()->getImagesDirectory()
+                . '/' . $images;
         } else {
             return '';
         }
-    }   
+    }
 
-    // public function getFunctions(): array
-    // {
-    //     return [
-    //         new TwigFunction('function_name', [$this, 'doSomething']),
-    //     ];
-    // }
-
-    
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction('function_name', [$this, 'doSomething']),
+        ];
+    }
 }

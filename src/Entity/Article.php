@@ -34,12 +34,7 @@ class Article
      */
     private $prix;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
+     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="categorie")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -55,14 +50,20 @@ class Article
      */
     private $commands;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="article", orphanRemoval=true, cascade={"persist"})
+     */
+    private $images;
+
     public function __construct()
     {        
         $this->commands = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
     
-    public function getImageDirectory(): string
+    public function getImagesDirectory(): string
     {
-        return 'boutique';
+        return 'boutique'.'/'.strtolower($this->getCategorie()->getNom());
     }
 
     public function getId(): ?int
@@ -106,18 +107,7 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
+    
     public function getCategorie(): ?Categorie
     {
         return $this->categorie;
@@ -154,6 +144,36 @@ class Article
             // set the owning side to null (unless already changed)
             if ($command->getArticle() === $this) {
                 $command->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getArticle() === $this) {
+                $image->setArticle(null);
             }
         }
 

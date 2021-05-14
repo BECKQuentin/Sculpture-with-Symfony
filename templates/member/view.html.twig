@@ -15,7 +15,7 @@
         
         
         <div class="d-flex flex-column">
-            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('member_update') }}">Voir mes commandes</a>            
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('member_commands') }}">Voir mes commandes</a>            
             <a class="btn btn-secondary btn-profil mb-2" href="{{ path('member_update') }}">Modifier mon profil</a>            
             {% if is_granted('ROLE_ADMIN') %}
             @Admin

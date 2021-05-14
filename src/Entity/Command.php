@@ -29,11 +29,16 @@ class Command
      */
     private $article;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $status = [];
+
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
     public function getUser(): ?User
     {
         return $this->user;
@@ -54,6 +59,18 @@ class Command
     public function setArticle(?Article $article): self
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    public function getStatus(): ?array
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?array $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

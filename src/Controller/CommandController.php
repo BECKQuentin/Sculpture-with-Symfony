@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Command;
+use App\Entity\User;
 use App\Repository\CommandRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,45 +25,85 @@ class CommandController extends AbstractController
             'commands' => $commandRepository->findAll()
         ]);     
     }
-
+   
     /**
-    * @Route("/received-commands/{id}", name="received_command")
+    * @Route("/received-command/{id}", name="received_command")
     * @IsGranted("ROLE_ADMIN", message="Seuls les ADMINS peuvent faire ça")
     */
-    public function receivedCommand(): Response
+    public function receivedCommand(Command $command): Response
     {
-    
+        $command->setStatus(['RECEIVED']);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($command);
+        $em->flush();
+
+        $this->addFlash('success', 'Status mis à jour');
         return $this->redirectToRoute('commands_listing');           
     }
 
     /**
-    * @Route("/progress-commands/{id}", name="progress_command")
+    * @Route("/progress-command/{id}", name="progress_command")
     * @IsGranted("ROLE_ADMIN", message="Seuls les ADMINS peuvent faire ça")
     */
-    public function progressCommand(): Response
+    public function progressCommand(Command $command): Response
     {
-    
+        $command->setStatus(['PROGRESS']);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($command);
+        $em->flush();
+
+        $this->addFlash('success', 'Status mis à jour');
         return $this->redirectToRoute('commands_listing');           
     }
 
     /**
-    * @Route("/delivery-commands/{id}", name="delivery_command")
+    * @Route("/delivering-command/{id}", name="delivering_command")
     * @IsGranted("ROLE_ADMIN", message="Seuls les ADMINS peuvent faire ça")
     */
-    public function deliveryCommand(): Response
+    public function deliveringCommand(Command $command): Response
     {
-    
+        $command->setStatus(['DELIVERING']);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($command);
+        $em->flush();
+
+        $this->addFlash('success', 'Status mis à jour');
         return $this->redirectToRoute('commands_listing');           
     }
 
     /**
-    * @Route("/delivered-commands/{id}", name="delivered_command")
+    * @Route("/delivered-command/{id}", name="delivered_command")
     * @IsGranted("ROLE_ADMIN", message="Seuls les ADMINS peuvent faire ça")
     */
-    public function ddeliveredCommand(): Response
+    public function deliveredCommand(Command $command): Response
     {
-    
+        $command->setStatus(['DELIVERED']);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($command);
+        $em->flush();
+
+        $this->addFlash('success', 'Status mis à jour');
         return $this->redirectToRoute('commands_listing');           
+    }
+
+    /**
+    * @Route("/delete-command/{id}", name="delete_command")
+    */
+    public function deleteCommand(Command $command): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($command);
+        $em->flush();
+
+        $this->addFlash('danger', "Commande supprimée avec succès !");
+        
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('commands_listing');   
+        }
+        else if ($this->container->get('security.authorization_checker')->isGranted('ROLE_MEMBER')) {
+            return $this->redirectToRoute('member_commands'); 
+        }
+               
     }
     
 

@@ -1,3 +1,7 @@
-#index:
+# index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+# delete_command:
+#    path: /delete-command/{id}
+#    controller: App\Controller\CommandController::deleteCommand
+

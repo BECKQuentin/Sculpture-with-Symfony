@@ -7,19 +7,19 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class UploadService
 {
-    private $uploadImageDirectory;
+    private $uploadImagesDirectory;
     
     public function __construct(string $uploadImageDirectory)
     {
-        $this->uploadImageDirectory = $uploadImageDirectory;
+        $this->uploadImagesDirectory = $uploadImageDirectory;
     }
 
-    public function uploadImage(UploadedFile $image, object $entity)
+    public function uploadImages(UploadedFile $images, $entity)
     {
-        $fileName = $this->createFileName($image);
+        $fileName = $this->createFileName($images);
 
-        $path = $this->uploadImageDirectory . '/' . $entity->getImageDirectory();
-        $image->move($path, $fileName);
+        $path = $this->uploadImagesDirectory . "/" . $entity->getImagesDirectory();
+        $images->move($path, $fileName);
 
         return $fileName;
     }

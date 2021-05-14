@@ -1,50 +1,87 @@
 <header>
-    <div id="toolbar">				
-        <div id="titre_principale">
-            <a href="{{ path('home') }}">
-                <h1>BECK Quentin</h1>						
-                <h2>SCULPTURE</h2>
-            </a>
-        </div>
-        <nav>
-            <ul>					
-                <li class="{{ route_name == 'home' ? 'selected_page' }}"><a href="{{ path('home') }}">Accueil</a></li>
-                <li class="{{ route_name == 'creation' ? 'selected_page' }}"><a href="{{ path('creation') }}">Création</a></li>
-                <li class="{{ route_name == 'boutique' or route_name == 'bougeoir' or route_name == 'lampe' or route_name == 'sculpture' ? 'selected_page' }}"><a href="{{ path('boutique') }}">Boutique<i class="fas fa-sort-down arrow_down"></i></a>
-                    <ul>
-                        <li class="{{ route_name == 'bougeoir' ? 'selected_page' }}"><a href="{{ path('bougeoir') }}">Bougeoir</a></li>
-                        <li class="{{ route_name == 'lampe' ? 'selected_page' }}"><a href="{{ path('lampe') }}">Lampe</a></li>
-                        <li class="{{ route_name == 'sculpture' ? 'selected_page' }}"><a href="{{ path('sculpture') }}">Sculpture</a></li>	
-                    </ul>
-                </li>
-                <li class="{{ route_name == 'contact' ? 'selected_page' }}"><a href="{{ path('contact') }}">Contact</a></li>
+	<div id="toolbar">
+		<div id="titre_principale">
+			<a href="{{ path('home') }}">
+				<h1>BECK Quentin</h1>
+				<h2>SCULPTURE</h2>
+			</a>
+		</div>
+		<nav>
+			<ul>
+				<a href="{{ path('home') }}">
+					<li class="{{ route_name == 'home' ? 'selected_page' }}">
+						Accueil
+					</li>
+				</a>
+				<a href="{{ path('creation') }}">
+					<li class="{{ route_name == 'creation' ? 'selected_page' }}">
+						Création
+					</li>
+				</a>
+				<a href="{{ path('boutique') }}">
+					<li class="{{ route_name == 'boutique' or route_name == 'bougeoir' or route_name == 'lampe' or route_name == 'sculpture' ? 'selected_page' }}">
+						Boutique<i class="fas fa-sort-down arrow_down"></i>
+						<ul>
+							<a href="{{ path('bougeoir') }}">
+								<li class="{{ route_name == 'bougeoir' ? 'selected_page' }}">
+									Bougeoir
+								</li>
+							</a>
+							<a href="{{ path('lampe') }}">
+								<li class="{{ route_name == 'lampe' ? 'selected_page' }}">
+									Lampe
+								</li>
+							</a>
+							<a href="{{ path('sculpture') }}">
+								<li class="{{ route_name == 'sculpture' ? 'selected_page' }}">
+									Sculpture
+								</li>
+							</a>
+						</ul>
+					</li>
+				</a>
+				<a href="{{ path('contact') }}">
+					<li class="{{ route_name == 'contact' ? 'selected_page' }}">
+						Contact
+					</li>
+				</a>
 
-                {% if is_granted('ROLE_USER') %}
-				<li class="{{ route_name == 'conexion' ? 'selected_page' }}">
-					<a href="{{ path('redirect_user') }}"><i class="fas fa-user-cog"></i></a>
+				{% if is_granted('ROLE_USER') %}
+					<a href="{{ path('redirect_user') }}">
+						<li class="{{ route_name in ['admin','member'] ? 'selected_page' }}">
+							<i class="fas fa-user-cog"></i>
+						</li>
+					</a>
+					<a href="{{ path('app_logout') }}">
+						<li class="{{ route_name == 'conexion' ? 'selected_page' }}">
+							Déconnexion
+						</li>
+					</a>
+				{% else %}
+					<a href="{{ path('app_login') }}">
+						<li class="{{ route_name == 'conexion' ? 'selected_page' }}">
+							Connexion
+						</li>
+					</a>
+				{% endif %}
+
+				{# <li class="{{ route_name == 'conexion' ? 'selected_page' }}"><a href="{{ path('conexion') }}"><i class="fas fa-user"></i></a></li> #}
+
+				<li class="{{ route_name == 'panier' ? 'selected_page' }}">
+					<a href="{{ path('panier') }}">
+						<i class="fas fa-shopping-cart"></i>
+					</a>
 				</li>
-				<li class="{{ route_name == 'conexion' ? 'selected_page' }}">
-					<a href="{{ path('app_logout') }}">Déconnexion</a>
-				</li>
-			    {% else %}
-				<li class="{{ route_name == 'conexion' ? 'selected_page' }}">
-	                <a href="{{ path('app_login') }}">Connexion</a>
-				</li>
-			    {% endif %}	
-                
-                {# <li class="{{ route_name == 'conexion' ? 'selected_page' }}"><a href="{{ path('conexion') }}"><i class="fas fa-user"></i></a></li> #}
-                
-                <li class="{{ route_name == 'panier' ? 'selected_page' }}" ><a href="{{ path('panier') }}"><i class="fas fa-shopping-cart"></i></a></li>
-                
-                <div class="nightmode_flex">
-                    <input type="checkbox" class="nightmode" id="nightmode">
-                    <label for="nightmode" class="select_nightmode">
-                        <i class="fas fa-sun"></i>
-                        <i class="fas fa-moon"></i>
-                        <div class="ball"></div>
-                    </label>
-                </div>				
-            </ul>
-        </nav>
-    </div>				
+
+				<div class="nightmode_flex">
+					<input type="checkbox" class="nightmode" id="nightmode">
+					<label for="nightmode" class="select_nightmode">
+						<i class="fas fa-sun"></i>
+						<i class="fas fa-moon"></i>
+						<div class="ball"></div>
+					</label>
+				</div>
+			</ul>
+		</nav>
+	</div>
 </header>

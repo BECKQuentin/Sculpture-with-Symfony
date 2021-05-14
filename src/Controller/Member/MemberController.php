@@ -2,7 +2,9 @@
 
 namespace App\Controller\Member;
 
+use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\CommandRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,4 +51,20 @@ class MemberController extends AbstractController
             'user' => $user
         ]);
     }
+
+    /**
+    * @Route("/member-commands", name="member_commands")
+    */
+    public function memberCommands(CommandRepository $commandRepository): Response
+    {
+        $user = $this->getUser();
+        $commands = $user->getCommands();
+
+        // dd($commands);
+        
+        return $this->render('member/member_commands.html.twig', [
+            'commands' => $commands
+        ]);     
+    }
+    
 }

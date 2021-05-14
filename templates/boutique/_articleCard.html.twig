@@ -1,0 +1,46 @@
+{% block content %}
+	{% for article in articles %}
+		<div class="article">
+			<div class="article_photo">
+
+				<div id="carouselArticle" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+
+						{% for img in article.images %}
+							<div class="carousel-item {% if loop.first %} active {% endif %} ">
+								<a href="{{ path('article', {id: article.id}) }}">
+									<div class="img-ratio" style="--ratio:100%;">
+										<div class="img p-2">
+											<img class="d-block w-100" src="{{ img|image }}" alt="image de">
+										</div>
+									</div>
+								</a>
+							</div>
+						{% endfor %}
+
+					</div>
+				</div>
+
+
+			</div>
+			<div class="prix">
+				<div class="text-center text-uppercase">
+					<p class="my-3">{{ article.title }}</p>
+				</div>
+				<hr>
+				<div class="text-center">
+					<p class="my-3">{{ article.description }}</p>
+				</div>
+				<div class="achat">
+					<div class="achat_prix">
+						<p>{{ article.prix }}
+							€</p>
+					</div>
+
+					{% include "article/_articleButton.html.twig" %}
+
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

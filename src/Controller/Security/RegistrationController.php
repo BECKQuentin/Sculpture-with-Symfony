@@ -30,8 +30,7 @@ class RegistrationController extends AbstractController
         Encryptor $encryptor
         ): Response
     {
-        //dd($encryptor->encrypt('emmeline'));
-        //dd($encryptor->decrypt('ULUOynN2ex6z2vJ4nwWRnbHDrABzWwCh'));
+        
         if ($this->getUser()) {
             return $this->redirectToRoute('login');
             

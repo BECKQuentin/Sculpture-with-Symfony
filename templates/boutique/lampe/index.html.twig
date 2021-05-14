@@ -7,53 +7,8 @@
         <h3>Lampe</h3>                        					
         <div class="articleBoutique"> 
 
-        {% for article in articles %}
-            <div class="article">                          
-                <div class="article_photo">
-                    <img src="{{ article.image }}">
-                </div>
-                <div class="prix">
-                    <div class="nom_article">
-                        <p>{{ article.title }}</p>
-                    </div>
-                    <div class="achat">
-                        <div class="achat_prix">
-                            <p>{{ article.prix }} €</p>
-                        </div>                                        
-                        <div class="achat_btn">                                            
-                            <button>
-                                Acheter
-                            </button>                                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-
-            <div class="article">                          
-                <div class="article_photo">
-                    <img src="img/boutique/lampe/lampe1.jpg">
-                </div>
-                <div class="prix">
-                    <div class="nom_article">
-                        <p>- Lampe Torse -</p>
-                    </div>
-                    <div class="achat">
-                        <div class="achat_prix">
-                            <p>149 €</p>
-                        </div>                                        
-                        <div class="achat_btn">
-                            <form>
-                                <button>
-                                    Acheter
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>          
+            {% include "boutique/_articleCard.html.twig" %}
                                         
         </div>
-    </div>
-    
+    </div>    
 {% endblock %}

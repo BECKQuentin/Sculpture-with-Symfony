@@ -31,8 +31,9 @@ class ArticleFormType extends AbstractType
                 'class' => Categorie::class,
                 'choice_label' => 'nom'
             ])
-            ->add('image', FileType::class, [
+            ->add('images', FileType::class, [
                 'label' => 'Image',
+                'multiple' => true,
                 'mapped' => false,
             ])
             // ->add('category', Select::class, [

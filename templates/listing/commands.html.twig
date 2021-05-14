@@ -38,9 +38,10 @@
                     <tr> 
                         <th>Titre</th>
                         <th>Prix</th>
-                        <th>Image</th>
+                        <th>Images</th>
                         <th>Client</th>                                                
-                        <th>Adresse</th>                                                
+                        <th>Adresse</th>                              
+                        <th>Status</th>                              
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -49,22 +50,26 @@
                         <tr>                        
                             <td>{{command.Article.title}}</td>
                             <td>{{command.Article.prix}}</td>                                                   
-                            <td>{{command.Article.image}}</td>                                                      
+                            <td><img src="{{command.Article.image}}" alt="image de {{command.Article.title}}"></td>                                                      
                             <td>{{command.User.name}} {{command.User.lastname}}</td> 
                             <td>{{command.User.adress}} - {{ command.User.postcode }} {{ command.User.city }}</td> 
+                            <td>{% for status in command.status %}{{status}}{% endfor %}</td> 
                             <td> 
                                 <div class="d-flex">
-                                    <a class="me-1 btn btn-primary"href="{{ path('received_command', {id: command.Article.id}) }}">
+                                    <a class="me-1 btn btn-primary"href="{{ path('received_command', {id: command.id}) }}">
                                         <i class="fas fa-concierge-bell"></i>
                                     </a>                   
-                                    <a class="me-1 btn btn-primary"href="{{ path('progress_command', {id: command.Article.id}) }}">
+                                    <a class="me-1 btn btn-primary"href="{{ path('progress_command', {id: command.id}) }}">
                                         <i class="fas fa-hammer"></i>
                                     </a>                   
-                                    <a class="me-1 btn btn-primary"href="{{ path('delivery_command', {id: command.Article.id}) }}">
+                                    <a class="me-1 btn btn-primary"href="{{ path('delivering_command', {id: command.id}) }}">
                                         <i class="fas fa-truck"></i>
-                                    </a>              
-                                    <a class="me-1 btn btn-danger" href="{{ path('delivered_command', {id: command.Article.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet commande ?')">
+                                    </a>          
+                                    <a class="me-1 btn btn-danger" href="{{ path('delivered_command', {id: command.id}) }}" onclick="return confirm('Etes vous sûr de vouloir conclure la vente de {{ command.Article.title}} pour {{ command.User.name }} {{command.User.lastname }} ?')">
                                         <i class="fas fa-handshake"></i>
+                                    </a> 
+                                    <a class="me-1 btn btn-danger" href="{{ path('delete_command', {id: command.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer {{ command.Article.title}} pour {{ command.User.name }} {{command.User.lastname }} ?')">
+                                        <i class="fas fa-trash"></i>
                                     </a> 
                                 </div>                                                  
                             </td>

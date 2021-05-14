@@ -16,6 +16,9 @@ $(function(){
         $('.panier_empty').toggleClass('nightmode_off_black');
         $('.caddie').toggleClass('nightmode_off_black');
         $('.link_inscription').toggleClass('nightmode_off_black');
+        $('.nom_article p').toggleClass('nightmode_off_black');
+        $('.article_photo').toggleClass('nightmode_off_black');
+        $('.prix p').toggleClass('nightmode_off_black');
         
     }
     if (localStorage.getItem('nightmode') == 'off') {
@@ -88,5 +91,11 @@ $(function(){
             $('.galerie_affichage').css('display', 'none');
             $(".galerie_affichage").empty();
         });        
-    })     
+    }) 
+    
+    /////////////////Article//////////////////
+    $('.vue_photo_miniature_cadre').click(function() {
+        
+    })
+
 })//jquery
