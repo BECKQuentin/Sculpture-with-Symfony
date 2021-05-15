@@ -7,32 +7,29 @@
 	<div class="container">
 		<div class="d-flex justify-content-center">
 
-			<div class="vue_photo">
-				{% for img in article.images %}
-					{% if loop.first %}
-						<div class="img-ratio" style="--ratio:100%;">
-							<div class="img p-2">
-								<img class="d-block w-100" src="{{ img|image }}" alt="image de">
-							</div>
-						</div>
-					{% endif %}
-				{% endfor %}
+			<div class="vue_article">
+				<div class="img-ratio" style="--ratio:100%;">
+					<div class="img vue_article_return">
+						{% for img in article.images %}
+							{% if loop.first %}
+								<img class="d-block w-100" src="{{ img|image }}" alt="">
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
 			</div>
 
-			<div class="vue_photo_miniature">
-				{% for img in article.images %}
-					<a href="">
-						<div class="vue_photo_miniature_cadre" {#data-article-image="{{ article|image }}"#}>
-							<div class="img-ratio" style="--ratio:80%;">
-								<div class="img ">
-									<img src="{{ img|image }}" alt="image de {{article.title}}">
-								</div>
+			{% for img in article.images %}
+				<div class="vue_article_miniature" data-get-article-image="{{ img|image }}">
+					<div class="vue_article_miniature_cadre">
+						<div class="img-ratio" style="--ratio:80%;">
+							<div class="img">
+								<img src="{{ img|image }}" alt="image de {{article.title}}">
 							</div>
 						</div>
-					</a>
-				{% endfor %}
-			</div>
-
+					</div>
+				</div>
+			{% endfor %}
 
 		</div>
 

@@ -17,8 +17,8 @@ class ArticleRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
-    }    
-    
+    }
+
     // public function findArticlesByCategorie($categorie)
     // {
     //     return $this->findBy();
@@ -29,51 +29,44 @@ class ArticleRepository extends ServiceEntityRepository
     //  */    
     public function findBySearch($search): array
     {
-        return $this->createQueryBuilder('a') 
+        return $this->createQueryBuilder('a')
             ->andWhere('a.title LIKE :search')
             ->orWhere('a.description LIKE :search')
             ->orWhere('a.prix LIKE :search')
-            ->setParameter('search', '%'.$search.'%')
+            ->setParameter('search', '%' . $search . '%')
             ->getQuery()
-            ->getResult()
-        ;
-    }    
+            ->getResult();
+    }
 
-     // /**
+    // /**
     //  * @return Article[] Returns an array of Article objects
     //  */    
     public function articleSearch(array $params): array
     {
-        if(!empty($params['search_articles'])) {
-            $search = $params['search_articles']; 
-            $articles = $this->findBySearch($search);            
-        }
-        else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 1) {
-           
+        if (!empty($params['search_articles'])) {
+            $search = $params['search_articles'];
+            $articles = $this->findBySearch($search);
+        } else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 1) {
+
             $articles = $this->findBy(array(), array('title' => 'ASC'));
-        }
-        else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 2) {
-            
-            $articles = $this->findBy(array(), array('title' => 'DESC'));        
-        }
-        else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 3) {
-            
-            $articles = $this->findBy(array(), array('prix' => 'ASC'));            
-        }
-        else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 4) {
-            
-            $articles = $this->findBy(array(), array('prix' => 'DESC'));            
-        }
-        else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 5) {
-            
-            $articles = $this->findBy(array(), array('categorie'::class => 'ASC'));            
-        }
-        else {
+        } else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 2) {
+
+            $articles = $this->findBy(array(), array('title' => 'DESC'));
+        } else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 3) {
+
+            $articles = $this->findBy(array(), array('prix' => 'ASC'));
+        } else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 4) {
+
+            $articles = $this->findBy(array(), array('prix' => 'DESC'));
+        } else if (!empty($params['search_select_articles']) && $params['search_select_articles'] == 5) {
+
+            $articles = $this->findBy(array(), array('categorie'::class => 'ASC'));
+        } else {
             $articles = $this->findAll();
-        }       
-        return $articles; 
+        }
+        return $articles;
     }
-    
+
 
     // // /**
     // //  * @return Playlist[] Returns an array of Playlist objects

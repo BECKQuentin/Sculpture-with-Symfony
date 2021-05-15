@@ -92,10 +92,5 @@ $(function(){
             $(".galerie_affichage").empty();
         });        
     }) 
-    
-    /////////////////Article//////////////////
-    $('.vue_photo_miniature_cadre').click(function() {
-        
-    })
 
 })//jquery

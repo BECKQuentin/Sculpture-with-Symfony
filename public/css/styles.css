@@ -440,7 +440,7 @@ nav li ul li:hover {
   width: 100%;
 }
 .article img:hover {
-  animation: growUp 0.8s;
+  animation: growUpp 0.8s forwards;
   cursor: pointer;
 }
 .prix {
@@ -473,25 +473,25 @@ nav li ul li:hover {
   cursor: pointer;
 }
 /*-Vue Article-*/
-.vue_photo {
-  width: 50%;
-  display: flex;
-  justify-content: center;
+.vue_article {
+  width: 250%;
 }
-.vue_photo img {
+.vue_article img {
   width: 80%;
+  padding: 10px;
 }
-.vue_photo_miniature {
+.vue_article_miniature {
   width: 50%;
   display: flex;
   justify-content: start;
   align-items: flex-start;
   flex-wrap: wrap;
 }
-.vue_photo_miniature a:hover {
+.vue_article_miniature:hover {
+  cursor: pointer;
   animation: growUp 1s forwards;
 }
-.vue_photo_miniature_cadre {
+.vue_article_miniature_cadre {
   width: 250px;
   height: 250px;
   padding: 10px;
@@ -725,7 +725,6 @@ nav li ul li:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;
 }
 .img-ratio > .img > img {
   height: 100%;

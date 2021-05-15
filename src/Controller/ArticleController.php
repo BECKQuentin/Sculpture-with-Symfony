@@ -30,8 +30,8 @@ class ArticleController extends AbstractController
                 'article' => $article
             ]);
         } else {
-            $this->addFlash('Warning', 'Veuillez vous inscire');
-            return $this->redirectToRoute('app_register');
+            $this->addFlash('danger', 'Veuillez vous connecter ou vous inscrire');
+            return $this->redirectToRoute('app_login');
         }
     }
 }
