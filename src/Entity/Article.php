@@ -55,15 +55,26 @@ class Article
      */
     private $images;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $weight;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Materials::class, inversedBy="articles")
+     */
+    private $materials;
+
     public function __construct()
     {        
         $this->commands = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->materials = new ArrayCollection();
     }
     
     public function getImagesDirectory(): string
     {
-        return 'boutique'.'/'.strtolower($this->getCategorie()->getNom());
+        return 'shop'.'/'.strtolower($this->getCategorie()->getNom());
     }
 
     public function getId(): ?int
@@ -176,6 +187,42 @@ class Article
                 $image->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getWeight(): ?float
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(?float $weight): self
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Materials[]
+     */
+    public function getMaterials(): Collection
+    {
+        return $this->materials;
+    }
+
+    public function addMaterial(Materials $material): self
+    {
+        if (!$this->materials->contains($material)) {
+            $this->materials[] = $material;
+        }
+
+        return $this;
+    }
+
+    public function removeMaterial(Materials $material): self
+    {
+        $this->materials->removeElement($material);
 
         return $this;
     }

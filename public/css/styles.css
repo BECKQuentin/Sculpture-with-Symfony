@@ -207,6 +207,13 @@ nav li ul li:hover {
   display: flex;
   justify-content: center;
 }
+.btn-red {
+  background-color: #8a2a2d !important;
+}
+.btn-red:hover {
+  background-color: #212121 !important;
+  animation: growUp 1s forwards;
+}
 /*-------------Portfolio----------*/
 .portfolio {
   display: flex;
@@ -301,12 +308,22 @@ nav li ul li:hover {
   justify-content: center;
   align-items: center;
 }
-
+.galerie_cadre a {
+  text-decoration: none !important;
+}
 .galerie_cadre img {
   margin: 10px 4px 10px;
   height: 120px;
   width: 120px;
   border-radius: 100%;
+}
+.creation_modal_title,
+.creation_modal_title button {
+  color: #fff !important;
+}
+.creation_modal_body img {
+  height: 450px;
+  width: 450px;
 }
 .galerie_cadre img:hover {
   cursor: pointer;
@@ -467,33 +484,29 @@ nav li ul li:hover {
   padding: 0px 10px;
   border-radius: 5px;
   background-color: #a83236;
+  color: #fff;
 }
 .achat_btn button:hover {
   animation: growUp 1s forwards;
   cursor: pointer;
 }
 /*-Vue Article-*/
+
 .vue_article {
-  width: 250%;
+  width: 50%;
 }
-.vue_article img {
-  width: 80%;
+.vue_article_return img {
   padding: 10px;
 }
 .vue_article_miniature {
-  width: 50%;
-  display: flex;
-  justify-content: start;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  height: 200px;
+  width: 200px;
 }
 .vue_article_miniature:hover {
   cursor: pointer;
   animation: growUp 1s forwards;
 }
-.vue_article_miniature_cadre {
-  width: 250px;
-  height: 250px;
+.vue_article_miniature_cadre {  
   padding: 10px;
 }
 .vue_achat {
@@ -504,6 +517,28 @@ nav li ul li:hover {
   font-weight: bold;
   color: #707070;
 }
+
+/*------Commander----*/
+.commander_article {
+  width: 50%;
+}
+.command_btn {
+  display: flex;
+  flex-direction: column;
+}
+.confirm_command {
+  width: 80%;
+}
+.command_active {
+  border: 4px solid #A12868 !important;
+}
+.empty_command {
+  font-size: 5rem;
+}
+.command_description ul{
+ list-style-type: none;
+}
+
 /*-----------------------Contact---------------------*/
 .contact {
   display: flex;
@@ -564,76 +599,39 @@ nav li ul li:hover {
 }
 
 /*-------------------PANIER-------------*/
-.panier {
+.empty_command {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.panier_empty {
+.empty_command_title {
   font-size: 2.2rem;
   height: 50px;
   color: #edebeb;
   margin: 2rem;
 }
-.panier_titre button {
-  height: 50px;
-  width: 200px;
-  color: #edebeb;
-  background-color: #8a2a2d;
-  border: 1px solid black;
-  border-radius: 4px;
-  margin: 2rem;
-  display: none;
-}
-.panier_article {
+.empty_cart_box {
   display: flex;
   align-items: center;
   padding-top: 10px;
   border-top: 1px solid #8a2a2d;
   border-bottom: 1px solid #8a2a2d;
 }
-.panier__article_photo {
-  height: 400px;
-  width: 400px;
-}
-.fa-cart-arrow-down {
+.empty_cart {
   padding: 40px;
   font-size: 150px;
 }
-.panier_article_photo img {
-  height: 300px;
-  width: 300px;
-  padding: 40px;
-}
-.panier_info {
-  width: 70%;
-  text-align: center;
-  display: none;
-}
-.panier_info_titre {
-  padding: 40px;
-}
-
-.panier_info_description_description {
-  padding-bottom: 40px;
-}
-.panier_info_description_poids {
-  padding-bottom: 40px;
-}
-.panier_info_prix {
-  padding-bottom: 40px;
-}
-.retour_boutique {
+.back_shop {
   margin: 40px;
 }
-.retour_boutique :hover {
+.back_shop :hover {
   border: 2px solid #8a2a2d;
   background-color: #212121;
   border-radius: 5px;
   box-shadow: 5px 5px 15px black;
   opacity: 0.7;
 }
-.retour_boutique a {
+.back_shop a {
   font-size: 2rem;
   color: #edebeb;
   background-color: #8a2a2d;
@@ -656,7 +654,7 @@ nav li ul li:hover {
 }
 #contact {
   margin: 10px 20px;
-  border: 2px solid#fff;
+  border: 2px solid #707070;
   width: 250px;
   border-radius: 5px;
 }
@@ -697,7 +695,7 @@ nav li ul li:hover {
   color: #fff;
   text-decoration: none;
   padding: 5px;
-  border: 1px solid white;
+  border: 1px solid #707070;
   border-radius: 5px;
   display: flex;
   justify-content: center;

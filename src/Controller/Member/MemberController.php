@@ -53,14 +53,17 @@ class MemberController extends AbstractController
     }
 
     /**
-    * @Route("/member-commands", name="member_commands")
+    * @Route("/member-commands", name="member_commands")    
     */
-    public function memberCommands(CommandRepository $commandRepository): Response
+    public function memberCommands(): Response
     {
-        $user = $this->getUser();
-        $commands = $user->getCommands();
-
-        // dd($commands);
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_MEMBER')) {
+            $user = $this->getUser();
+            $commands = $user->getCommands();
+        } else {
+            $commands = null;
+        }
+       
         
         return $this->render('member/member_commands.html.twig', [
             'commands' => $commands

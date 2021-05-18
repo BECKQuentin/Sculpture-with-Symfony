@@ -23,7 +23,7 @@
 			</div>
 			<div class="prix">
 				<div class="text-center text-uppercase">
-					<p class="my-3">{{ article.title }}</p>
+					<p class="my-3">{{ article.title|capitalize }}</p>
 				</div>
 				<hr>
 				<div class="text-center">
@@ -31,10 +31,10 @@
 				</div>
 				<div class="achat">
 					<div class="achat_prix">
-						<p>{{ article.prix }}
-							€</p>
+						<p>{{ article.prix|format_currency('EUR') }}</p>
 					</div>
 
+					{# Voir plus #}
 					{% include "article/_articleButton.html.twig" %}
 
 				</div>

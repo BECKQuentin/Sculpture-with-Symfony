@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="row offset-lg-4 col-4">
-        <h1 class="text-center mb-5">Modifier</h1>
+        <h3 class="text-center mb-5">Modifier</h3>
         <div class="text-start mb-5">
             {{ form_start(form) }}   
                 {{ form_row(form.name) }}
@@ -10,10 +10,11 @@
                 {{ form_row(form.adress) }}
                 {{ form_row(form.city) }}
                 {{ form_row(form.postcode) }}                                  
+                {{ form_row(form.phone) }}                                  
                             
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-success mt-3">Modifier</button>
-                    <a href="{{ path('member') }}"><div class="btn btn-danger mt-3">Retour</div></a>
+                    <a href="{{ path('member') }}"><div class="btn btn-danger btn-red mt-3">Retour</div></a>
                 </div>
             {{ form_end(form) }}
         </div>

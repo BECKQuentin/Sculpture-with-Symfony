@@ -66,7 +66,7 @@ class RegistrationController extends AbstractController
                 ],
             ]);
 
-            $this->addFlash("success", "Vous êtes bien enregistré ! Merci de vérifier votre compte en cliquant sur le lien que nous vous avons envoyé dans le mail.");
+            $this->addFlash("success", "Vous êtes bien enregistré ! Merci de vérifier votre compte en cliquant sur le lien que nous vous avons envoyé par Email.");
             return $this->redirectToRoute('app_login');
             // return $guardHandler->authenticateUserAndHandleSuccess(
             //     $user,

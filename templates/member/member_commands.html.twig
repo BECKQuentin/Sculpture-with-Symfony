@@ -2,57 +2,79 @@
 
 {% block body %}
 
-    {# Search Commands #}   
-    <h4 class="mb-3">Vos commandes</h4>
-    <div class="container-lg">
-    
-        {# Listing commands #}
-        {% if commands.count == 0 %}
-                    <p>Vous n'avez aucune commande</p>
-                    <div>
-                        <a href="{{ path('member') }}">
-                            <div class="btn btn-primary me-3">Voir la boutique</div>
-                        </a>
-                    </div>  
-        {% else %}
-        <div class="mb-3">
-            <table class="table mb-3">
-                <thead>
-                    <tr> 
-                        <th>Titre</th>
-                        <th>Prix</th>
-                        <th>Image</th>                                            
-                        <th>Status</th>                              
-                        <th class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>  
-               
-                    {% for command in commands %}
-                        <tr>                        
-                            <td>{{command.Article.title}}</td>
-                            <td>{{command.Article.prix}}</td>                                                   
-                            <td>{{command.Article.image}}</td>  
-                            <td>{% for status in command.status %}{{status}}{% endfor %}</td> 
-                            <td> 
-                                <div class="d-flex justify-content-center">                                     
-                                    <a class="me-1 btn btn-danger" href="{{ path('delete_command', {id: command.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer {{ command.Article.title}} ?')">
-                                        <i class="fas fa-trash"></i>
-                                    </a> 
-                                </div>                                                  
-                            </td>
-                        </tr>
-                    {% endfor %}
-                                     
-                </tbody>
-            </table>
-        
-            {% endif %}
-            <div>
-                <a href="{{ path('member') }}"><div class="btn btn-danger my-3">Retour</div></a>
-            </div> 
-        </div>
-    </div>
+{% if is_granted('ROLE_MEMBER') %}
+	{# Listing commands #}
+	{% if commands.count == 0 %}
+		{% include "member/_emptyCommand.html.twig" %}
+	{% else %}
+	
+	<h4 class="mb-3">Vos commandes</h4>
+	<div class="container-lg">
+			<div class="mb-3">
+				<table class="table mb-3">
+					<thead>
+						<tr>
+							<th>Titre</th>
+							<th>Prix</th>
+							<th>Image</th>
+							<th>Status</th>
+							<th class="text-center">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						{% for command in commands %}
+							<tr>
+								<td>{{command.Article.title}}</td>
+								<td>
+									{{command.Article.prix|format_currency('EUR')}}
+								</td>
+								<td>
+									{% for img in command.Article.images %}
+										{% if loop.first %}
+											<div class="img-ratio" style="--ratio:100%;">
+												<div class="img">
+													<img class="d-block w-100" src="{{ img|image }}" alt="image de">
+												</div>
+											</div>
+										{% endif %}
+									{% endfor %}
+								</td>
+								<td>
+									{% for status in command.status %}
+										{{status}}
+									{% endfor %}
+								</td>
+								<td>
+									<div class="d-flex justify-content-center flex-column align-items-center">
+										<a class="m-1 btn btn-secondary" href="{{ path('article', {id: command.article.id}) }}">
+											Voir l'article
+											<i class="fas fa-eye"></i>
+										</a>
+										<a class="m-1 btn btn-danger btn-red" href="{{ path('delete_command', {id: command.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer la commande de {{ command.Article.title}} ?')">
+											Supprimer ma commande
+											<i class="fas fa-trash"></i>
+										</a>
+									</div>
+								</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+				<div>
+					<a href="{{ path('member') }}">
+						<div class="btn btn-danger btn-red my-3">Retour</div>
+					</a>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+{% else %}
+	{% include "member/_emptyCommand.html.twig" %}
+{% endif %}
+
+	
 
 
 {% endblock %}

@@ -42,6 +42,7 @@
 				<tr>
 					<th>Titre</th>
 					<th>Description</th>
+					<th>Poids</th>
 					<th>Prix</th>
 					<th>Categorie</th>
 					<th>Images</th>
@@ -53,8 +54,8 @@
 					<tr class="all_articles">
 						<td>{{article.title}}</td>
 						<td>{{article.description}}</td>
-						<td>{{article.prix}}
-							€</td>
+						<td>{{article.weight}}</td>
+						<td>{{article.prix|format_currency('EUR')}}</td>
 						<td>{{article.categorie.nom}}</td>
 						<td>
 							{% for img in article.images %}
@@ -70,7 +71,7 @@
 								<a class="me-1 btn btn-primary" href="{{ path('update_article', {id: article.id}) }}">
 									<i class="fas fa-pen"></i>
 								</a>
-								<a class="me-1 btn btn-danger" href="{{ path('delete_article', {id: article.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet article ?')">
+								<a class="me-1 btn btn-danger btn-red" href="{{ path('delete_article', {id: article.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet article ?')">
 									<i class="fas fa-trash"></i>
 								</a>
 							</div>

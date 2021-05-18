@@ -19,6 +19,13 @@ $(function(){
         $('.nom_article p').toggleClass('nightmode_off_black');
         $('.article_photo').toggleClass('nightmode_off_black');
         $('.prix p').toggleClass('nightmode_off_black');
+        $('.contact_right_texte_info p').toggleClass('nightmode_off_black');
+        $('.contact_bottom_texte p').toggleClass('nightmode_off_black');
+        $('.empty_command_title').toggleClass('nightmode_off_black');
+        $('.member_infos').toggleClass('nightmode_off_black');
+        $('.member_button').toggleClass('nightmode_off_black');
+        $('.add_article').toggleClass('nightmode_off_black');
+        $('.confirm_command').toggleClass('nightmode_off_black');
         
     }
     if (localStorage.getItem('nightmode') == 'off') {
@@ -72,25 +79,25 @@ $(function(){
         })    
     })
 
-    /////////////////////Galerie////////////////////////
-    $('.galerie_cadre').on('click', function(e) {               
-        let src_target = $(e.target).attr('src');        
-        $(".galerie_affichage").prepend('<div class="galerie_affichage_photo"></div>');
-        let img = $('<img/>', {
-        class: 'imageAfficher',
-        src: src_target,
-        }).appendTo($('.galerie_affichage_photo'));
-        $('.galerie_affichage').css('display', 'flex'); 
-        $(".galerie_affichage").prepend('<div class="galerie_overlay"></div>');
-        $('.galerie_affichage_photo').prepend('<i class="fas fa-times fermer_affichage"></i>');
-        $('.galerie_affichage_photo').prepend('<i class="fas fa-arrow-right galerie_suivant"></i>');
-        $('.galerie_affichage_photo').prepend('<i class="fas fa-arrow-left galerie_precedent"></i>');
+    // /////////////////////Galerie////////////////////////
+    // $('.galerie_cadre').on('click', function(e) {               
+    //     let src_target = $(e.target).attr('src');        
+    //     $(".galerie_affichage").prepend('<div class="galerie_affichage_photo"></div>');
+    //     let img = $('<img/>', {
+    //     class: 'imageAfficher',
+    //     src: src_target,
+    //     }).appendTo($('.galerie_affichage_photo'));
+    //     $('.galerie_affichage').css('display', 'flex'); 
+    //     $(".galerie_affichage").prepend('<div class="galerie_overlay"></div>');
+    //     $('.galerie_affichage_photo').prepend('<i class="fas fa-times fermer_affichage"></i>');
+    //     $('.galerie_affichage_photo').prepend('<i class="fas fa-arrow-right galerie_suivant"></i>');
+    //     $('.galerie_affichage_photo').prepend('<i class="fas fa-arrow-left galerie_precedent"></i>');
 
-        ////fermer affichage/////
-        $('.fermer_affichage').on('click', function() {
-            $('.galerie_affichage').css('display', 'none');
-            $(".galerie_affichage").empty();
-        });        
-    }) 
+    //     ////fermer affichage/////
+    //     $('.fermer_affichage').on('click', function() {
+    //         $('.galerie_affichage').css('display', 'none');
+    //         $(".galerie_affichage").empty();
+    //     });        
+    // }) 
 
 })//jquery

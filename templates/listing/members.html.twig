@@ -52,7 +52,7 @@
                         </td>    
                         <td class="action_members text-center"> 
                             <a class="ms-1" href="{{ path('delete_member', {id: member.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet utilisateur ?')">
-                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-danger btn-red"><i class="fas fa-trash"></i></button>
                             </a>                   
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
             </table>
         </div>
         <div>
-            <a href="{{ path('admin') }}"><div class="btn btn-danger my-3">Retour</div></a>
+            <a href="{{ path('admin') }}"><div class="btn btn-danger btn-red my-3">Retour</div></a>
         </div>  
     
 

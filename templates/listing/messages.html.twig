@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listing des Messages
+{% endblock %}
+
+{% block body %}
+	{# {# Search Articles #}
+	<h4 class="mb-3">Liste des Messages</h4>
+	<div class="container-lg">
+		<div class="search_articles d-flex justify-content-center mb-3">
+			<form action="" method="POST" class="d-flex">
+				<div>
+					<select class="form-select" name="search_select_articles">
+						<option selected>Trier par :</option>
+						<option value="1">Titre Croissant</option>
+						<option value="2">Titre Décroissant</option>
+						<option value="3">Prix croissant</option>
+						<option value="4">Prix décroissant</option>
+						<option value="5">Catégorie</option>
+					</select>
+				</div>
+				<div>
+					<input type="text" class="form-control mx-2 w-100" placeholder="Recherchez" name="search_articles">
+				</div>
+				<div>
+					<button class="btn btn-primary ms-3">Recherchez<i class="fas fa-search ms-2"></i>
+					</button>
+				</div>
+				<div>
+					<a class="btn btn-primary ms-2" href="{{ path('add_article') }}">Ajoutez<i class="fas fa-plus ms-2"></i>
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	{# Listing articles #}
+	<div class="mb-3">
+		<table class="table mb-3">
+			<thead>
+				<tr>
+					<th>Member</th>
+					<th>Email</th>
+					<th>Nom Prénom</th>
+					<th>Adresse</th>
+					<th>Texte</th>
+					<th>Date</th>
+					<th class="text-center">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for message in messages %}
+					<tr class="all_articles">
+						<td>
+							{% if message.member.email is defined %}
+								<i class="fas fa-check"></i>
+							{% else %}
+								<i class="fas fa-times"></i>
+							{% endif %}
+						</td>
+						<td>
+							{% if message.member.email is defined %}
+								{{message.member.email}}
+							{% endif %}
+						</td>
+						<td>
+							{# [MEMBER] #}
+							{% if message.member.name is defined and message.member.lastname is defined %}
+								{{message.member.name}} {{message.member.lastname}}
+							{% endif %}
+							{# [NOT MEMBER] #}
+							{% if message.name is defined and message.lastname is defined %}
+								{{message.name}} {{message.lastname}}
+							{% endif %}
+						</td>
+						<td>
+							{% if message.member.adress is defined and message.member.postcode is defined and message.member.city is defined %}
+								{{message.member.adress}}<br>
+								{{message.member.postcode}} - {{message.member.city}}
+							{% endif %}
+						</td>
+						<td>{{message.message|short}}</td>
+						<td>{{message.createdAt|format_datetime}}</td>						
+						<td>
+							<div class="d-flex" id="see_message">
+								<a class="me-1 btn btn-primary"
+									href="#"
+									data-bs-toggle='modal' 
+									data-bs-target='#message_modal' 									
+									data-get-message-text="{{ message.message }}">
+									<i class="fas fa-eye"></i>
+								</a>
+								<a class="me-1 btn btn-danger btn-red" href="{{ path('delete_message', {id: message.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')">
+									<i class="fas fa-trash"></i>
+								</a>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}				
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<a href="{{ path('admin') }}">
+			<div class="btn btn-danger btn-red my-3">Retour</div>
+		</a>
+	</div>
+
+	{# Modal #}
+	<div class="modal fade" id="message_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="creationModalTitle" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content bg-dark">
+				<div class="modal-header"> 
+				<h5 class="modal-title w-100 message_modal_title" id="message_modal_title"></h5>                       
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-content "id="message_modal_body">
+					<p class="px-2"></p>					
+				</div>                 
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+

@@ -11,17 +11,19 @@
         <div class="col-mx-auto">
 
             <h1 class="text-center">Articles</h1>
-            <div>
+            <div class="add_article">
                 {{ form_start(form) }}
                     {{ form_row(form.title) }}                
                     {{ form_row(form.description) }}
+                    {{ form_row(form.weight) }}
                     {{ form_row(form.prix) }}
+                    {{ form_row(form.materials) }}
                     {{ form_row(form.categorie) }}
                     {{ form_row(form.images) }}
 
                     <div class="d-flex justify-content-between">
                         {{ form_row(form.submit) }} 
-                        <a href="{{ path('articles_listing') }}"><div class="btn btn-danger my-3">Retour</div></a>
+                        <a href="{{ path('articles_listing') }}"><div class="btn btn-danger btn-red my-3">Retour</div></a>
                     </div>   
 
                 {{ form_end(form) }}

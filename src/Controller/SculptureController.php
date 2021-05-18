@@ -14,7 +14,7 @@ class SculptureController extends AbstractController
      */
     public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('boutique/sculpture/index.html.twig', [
+        return $this->render('shop/sculpture/index.html.twig', [
             'articles' => $articleRepository->findBy(['categorie' => 3])
         ]);
     }

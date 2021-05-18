@@ -3,10 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Entity\ClientMessage;
 use App\Entity\Images;
+use App\Entity\Materials;
 use App\Entity\User;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\ClientMessageRepository;
 use App\Repository\UserRepository;
 use App\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -65,8 +68,7 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $images = $form->get('images')->getData();
-
+            $images = $form->get('images')->getData();            
             if ($images) {
                 foreach ($images as $image) {
                     $fileName = $uploadService->uploadImages($image, $article); 
@@ -75,6 +77,14 @@ class AdminController extends AbstractController
                     $article->addImage($img);   
                 }
             }
+
+            // $materials = $form->get('materials')->getData();
+            // if($materials) {
+            //     foreach ($materials as $material) {
+            //         $material = new Materials();
+            //         $article->addMaterial($material);
+            //     }
+            // }
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
@@ -115,6 +125,7 @@ class AdminController extends AbstractController
         $this->addFlash('danger', "Vous avez supprimé ".$article->getTitle()."  !");
         return $this->redirectToRoute('articles_listing');
     }
+    
 
     /**
     * @Route("/admin/update/{id}", name="update_article")
@@ -122,8 +133,7 @@ class AdminController extends AbstractController
     */
     public function memberUpdate(Article $article, Request $request)
     {     
-        $form = $this->createForm(ArticleFormType::class, $article);
-        // $form->remove('email')->remove('plainPassword')->remove('agreeTerms')->remove('submit');
+        $form = $this->createForm(ArticleFormType::class, $article);        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -140,6 +150,31 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
             'article' => $article
         ]);
-    }    
+    } 
+
+    /**
+    * @Route("/messages-listing", name="messages_listing")
+    * @IsGranted("ROLE_ADMIN", message="Seules les ADMINS peuvent faire ça")
+    */
+    public function clientMessageListing(ClientMessageRepository $clientMessageRepository, Request $request ): Response
+    {   
+        return $this->render('listing/messages.html.twig', [
+            'messages' => $clientMessageRepository->findAll()
+        ]);     
+    }
+
+    /**
+    * @Route("/delete-message/{id}", name="delete_message")
+    * @IsGranted("ROLE_ADMIN", message="Seules les ADMINS peuvent faire ça")
+    */
+    public function deleteMessage(ClientMessage $clientMessage): Response
+    {        
+        $em = $this->getDoctrine()->getManager();        
+        $em->remove($clientMessage);
+        $em->flush();        
+        
+        $this->addFlash('danger', "Vous avez supprimé un message !");
+        return $this->redirectToRoute('messages_listing');
+    }
       
 }

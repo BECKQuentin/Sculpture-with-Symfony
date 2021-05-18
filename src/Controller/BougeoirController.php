@@ -15,7 +15,7 @@ class BougeoirController extends AbstractController
      */
     public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('boutique/bougeoir/index.html.twig', [
+        return $this->render('shop/bougeoir/index.html.twig', [
             'articles' => $articleRepository->findBy(['categorie' => 1])
         ]);
     }

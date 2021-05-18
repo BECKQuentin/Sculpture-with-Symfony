@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Command;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,24 +15,10 @@ class ArticleController extends AbstractController
      */
     public function index(Article $article): Response
     {
-        return $this->render('article/index.html.twig', [
+        
+        return $this->render('article/article.html.twig', [
             'article' => $article,
+            'user' => $this->getUser()
         ]);
-    }
-
-    /**
-     * @Route("/command-article/{id}", name="command_article")
-     */
-    public function seeArticle(Article $article): Response
-    {
-        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_MEMBER')) {
-
-            return $this->render('commandArticle.html.twig', [
-                'article' => $article
-            ]);
-        } else {
-            $this->addFlash('danger', 'Veuillez vous connecter ou vous inscrire');
-            return $this->redirectToRoute('app_login');
-        }
     }
 }

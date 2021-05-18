@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="d-flex justify-content-center">
+
+			<div class="vue_article">
+				<div class="img-ratio" style="--ratio:100%;">
+					<div class="img vue_article_return">
+						{% for img in article.images %}
+							{% if loop.first %}
+								<img class="d-block w-100" src="{{ img|image }}" alt="">
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div>
+				{% for img in article.images %}
+					<div class="vue_article_miniature" data-get-article-image="{{ img|image }}">
+						<div class="vue_article_miniature_cadre">
+							<div class="img-ratio" style="--ratio:80%;">
+								<div class="img">
+									<img src="{{ img|image }}" alt="image de {{article.title}}">
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+		</div>
+
+		<div class="prix">
+			<div class="text-center text-uppercase">
+				<p class="night my-3">{{ article.title|capitalize }}</p>
+			</div>
+			<hr>
+			<div class="text-center">
+				<p class="night my-3">
+					Description : {{ article.description }}<br>
+					Matériaux : 
+					{% for material in article.materials %}						
+						{% if not loop.first %}	- {% endif %}
+							{{material.name}}						
+					{% endfor %}<br>
+					Poids : {{article.weight|weight}}<br>
+				</p>
+			</div>			
+
+			<div class="vue_achat">
+				<div class="achat_prix me-4">
+					<p>{{ article.prix|format_currency('EUR') }}</p>
+				</div>
+
+				{% if is_granted('ROLE_ADMIN') %}
+					<div class="d-flex">
+						<a class="me-1 btn btn-primary" href="{{ path('update_article', {id: article.id}) }}">
+							<i class="fas fa-pen"></i>
+						</a>
+						<a class="me-1 btn btn-danger btn-red" href="{{ path('delete_article', {id: article.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet article ?')">
+							<i class="fas fa-trash"></i>
+						</a>
+					</div>
+				{% endif %}
+				{% if is_granted('ROLE_MEMBER')%}					
+					<div class="achat_btn pe-2">
+						<a href="{{ path('confirm_command', {id: article.id}) }}">
+							<button>
+								Commander
+							</button>
+						</a>
+					</div>
+				{% else %}
+					<a class="btn btn-secondary" href="{{path('app_login')}}">
+						Connectez-vous pour commander
+					</a>
+								
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

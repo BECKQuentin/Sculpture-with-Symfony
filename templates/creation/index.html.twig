@@ -7,31 +7,32 @@
         <div class="galerie_affichage">														
         </div>
         <div class="galerie_cadre">
-            <img src="img/créations/tdp_1.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_2.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_3.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_4.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_5.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_6.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_7.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_8.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_9.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_10.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_11.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_12.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_13.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_14.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_15.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_16.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_17.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_18.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_19.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_20.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_21.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_22.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_23.jpg" alt="Four à pain">
-            <img src="img/créations/tdp_24.jpg" alt="Four à pain">														
-        </div>						
+            {% for creation in creations %}
+                <a href='#' 
+                data-bs-toggle='modal' 
+                data-bs-target='#creationModal' 
+                data-get-creation-image="{{ creation.image|creation }}"
+                data-get-creation-title="{{ creation.title }}">
+                    <img src="{{ creation.image|creation }}" alt="{{ creation.title }}">           
+                </a>       
+            {% endfor %}     
+        </div>
+        
+        {# Modal #}
+        <div class="modal fade" id="creationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="creationModalTitle" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header"> 
+                        <h5 class="modal-title w-100 creation_modal_title" id="creationModalTitle"></h5>                       
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="creation_modal_body"> 
+                        <img class="modal-content" src="" alt="">
+                    </div>                 
+                </div>
+            </div>
+        </div>
+					
     </div>							
     
 {% endblock %}

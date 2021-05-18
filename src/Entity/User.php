@@ -78,10 +78,21 @@ class User implements UserInterface
      */
     private $commands;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ClientMessage::class, mappedBy="member")
+     */
+    private $clientMessages;
+
 
     public function __construct()
     {        
         $this->commands = new ArrayCollection();
+        $this->clientMessages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -260,6 +271,48 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($command->getUser() === $this) {
                 $command->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?int $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ClientMessage[]
+     */
+    public function getClientMessages(): Collection
+    {
+        return $this->clientMessages;
+    }
+
+    public function addClientMessage(ClientMessage $clientMessage): self
+    {
+        if (!$this->clientMessages->contains($clientMessage)) {
+            $this->clientMessages[] = $clientMessage;
+            $clientMessage->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClientMessage(ClientMessage $clientMessage): self
+    {
+        if ($this->clientMessages->removeElement($clientMessage)) {
+            // set the owning side to null (unless already changed)
+            if ($clientMessage->getMember() === $this) {
+                $clientMessage->setMember(null);
             }
         }
 

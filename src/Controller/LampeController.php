@@ -14,7 +14,7 @@ class LampeController extends AbstractController
      */
     public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('boutique/lampe/index.html.twig', [
+        return $this->render('shop/lampe/index.html.twig', [
             'articles' => $articleRepository->findBy(['categorie' => 2])
         ]);
     }

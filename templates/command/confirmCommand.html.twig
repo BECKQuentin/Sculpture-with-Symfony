@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commander
+	{{article.title}}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="d-flex p-4">
+			<div class="commander_article">
+				<div class="img-ratio" style="--ratio:100%;">
+					<div class="img">
+						{% for img in article.images %}
+							{% if loop.first %}
+								<img class="d-block w-100" src="{{ img|image }}" alt="">
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="commander_article d-flex align-items-center justify-content-center">
+				<div class="confirm_command">
+					<div class="text-center text-uppercase">
+						<p class="night my-3">Titre :
+							{{ article.title|capitalize }}</p>
+					</div>
+					<hr>
+					<div class="text-center command_description">
+						<p class="night my-3 text-center">
+							<p class="text-center pb-3">{{ article.description }}</p>	
+							---						
+							<p class="text-center">
+								Matériaux :
+								<ul class="text-center">
+								{% for material in article.materials %}
+									{% if not loop.first %}	- {% endif %}
+										<li>{{material.name}}</li>
+								{% endfor %}
+								</ul>
+							</p>
+							---
+							<p class="text-center">Poids : {{article.weight|weight}}</p>
+						</p>
+					</div>
+					<hr>
+					<div class="text-center">
+						<p class="night py-3">
+							<div class="py-3 fs-5">Adresse de Livraison</div>							
+							{{ user.name|capitalize }} {{ user.lastname|upper }}<br>
+							{{ user.adress }}<br>
+							{{ user.postcode }} - {{ user.city }}<br>
+							<a href="{{path('member_update')}}">
+								<i class="fas fa-pen"></i> Modifier l'adresse 
+							</a>           
+						</p>
+					</div>					
+					<div class="vue_achat command_btn pt-5">
+						<div class="achat_prix me-4">
+							<p>Prix :
+								{{ article.prix|format_currency('EUR') }}</p>
+						</div>
+
+						<div class="achat_btn pe-2">
+							<a href="{{ path('command_article', {id: article.id}) }}">
+								<button>
+									Confirmer la commande
+								</button>
+							</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

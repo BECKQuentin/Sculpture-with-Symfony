@@ -18,8 +18,8 @@
 						Création
 					</li>
 				</a>
-				<a href="{{ path('boutique') }}">
-					<li class="{{ route_name == 'boutique' or route_name == 'bougeoir' or route_name == 'lampe' or route_name == 'sculpture' ? 'selected_page' }}">
+				<a href="{{ path('shop') }}">
+					<li class="{{ route_name == 'shop' or route_name == 'bougeoir' or route_name == 'lampe' or route_name == 'sculpture' ? 'selected_page' }}">
 						Boutique<i class="fas fa-sort-down arrow_down"></i>
 						<ul>
 							<a href="{{ path('bougeoir') }}">
@@ -63,15 +63,12 @@
 							Connexion
 						</li>
 					</a>
-				{% endif %}
-
-				{# <li class="{{ route_name == 'conexion' ? 'selected_page' }}"><a href="{{ path('conexion') }}"><i class="fas fa-user"></i></a></li> #}
-
-				<li class="{{ route_name == 'panier' ? 'selected_page' }}">
-					<a href="{{ path('panier') }}">
-						<i class="fas fa-shopping-cart"></i>
-					</a>
-				</li>
+				{% endif %}				
+				<a href="{{ path('member_commands') }}">
+					<li class="{{ route_name == 'member_commands' ? 'selected_page' }}">						
+							<i class="fas fa-shopping-cart"></i>
+					</li>
+				</a>				
 
 				<div class="nightmode_flex">
 					<input type="checkbox" class="nightmode" id="nightmode">

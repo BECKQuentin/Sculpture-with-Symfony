@@ -2,86 +2,128 @@
 
 {% block body %}
 
-    {# Search Commands #}   
-    <h4 class="mb-3">Liste des commandes</h4>
-    <div class="container-lg">
-    <h3>Fonction Recherche à Faire</h3>
-        {# <div class="search_commands d-flex justify-content-center mb-3">
-            <form action="" method="POST" class="d-flex">
-                <div>
-                    <select class="form-select" name="search_select_commands">
-                        <option selected>Trier par :</option>
-                        <option value="1">Titre Croissant</option>
-                        <option value="2">Titre Décroissant</option>
-                        <option value="3">Prix croissant</option>
-                        <option value="4">Prix décroissant</option>
-                        <option value="5">Catégorie</option>
-                    </select>
-                </div>
-                <div>
-                    <input type="text" class="form-control mx-2 w-100" placeholder="Recherchez" name="search_commands">
-                </div>
-                <div>
-                    <button class="btn btn-primary ms-3">Recherchez<i class="fas fa-search ms-2"></i></button>
-                </div>
-                <div>
-                    <a  class="btn btn-primary ms-2" href="{{ path('add_article') }}">Ajoutez<i class="fas fa-plus ms-2"></i></a>
-                </div>
-            </form>
-        </div> #}
-    </div>
+	{# Search Commands #}
+	<h4 class="mb-3">Liste des commandes</h4>
+	<div class="container-lg">
+		<h3>Fonction Recherche à Faire</h3>
+		{# <div class="search_commands d-flex justify-content-center mb-3">
+			<form action="" method="POST" class="d-flex">
+				<div>
+					<select class="form-select" name="search_select_commands">
+						<option selected>Trier par :</option>
+						<option value="1">Titre Croissant</option>
+						<option value="2">Titre Décroissant</option>
+						<option value="3">Prix croissant</option>
+						<option value="4">Prix décroissant</option>
+						<option value="5">Catégorie</option>
+					</select>
+				</div>
+				<div>
+					<input type="text" class="form-control mx-2 w-100" placeholder="Recherchez" name="search_commands">
+				</div>
+				<div>
+					<button class="btn btn-primary ms-3">Recherchez<i class="fas fa-search ms-2"></i></button>
+				</div>
+				<div>
+					<a  class="btn btn-primary ms-2" href="{{ path('add_article') }}">Ajoutez<i class="fas fa-plus ms-2"></i></a>
+				</div>
+			</form>
+		</div> #}
+	</div>
 
-        {# Listing commands #}
-        <div class="mb-3">
-            <table class="table mb-3">
-                <thead>
-                    <tr> 
-                        <th>Titre</th>
-                        <th>Prix</th>
-                        <th>Images</th>
-                        <th>Client</th>                                                
-                        <th>Adresse</th>                              
-                        <th>Status</th>                              
-                        <th class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>  
-                    {% for command in commands %}
-                        <tr>                        
-                            <td>{{command.Article.title}}</td>
-                            <td>{{command.Article.prix}}</td>                                                   
-                            <td><img src="{{command.Article.image}}" alt="image de {{command.Article.title}}"></td>                                                      
-                            <td>{{command.User.name}} {{command.User.lastname}}</td> 
-                            <td>{{command.User.adress}} - {{ command.User.postcode }} {{ command.User.city }}</td> 
-                            <td>{% for status in command.status %}{{status}}{% endfor %}</td> 
-                            <td> 
-                                <div class="d-flex">
-                                    <a class="me-1 btn btn-primary"href="{{ path('received_command', {id: command.id}) }}">
-                                        <i class="fas fa-concierge-bell"></i>
-                                    </a>                   
-                                    <a class="me-1 btn btn-primary"href="{{ path('progress_command', {id: command.id}) }}">
-                                        <i class="fas fa-hammer"></i>
-                                    </a>                   
-                                    <a class="me-1 btn btn-primary"href="{{ path('delivering_command', {id: command.id}) }}">
-                                        <i class="fas fa-truck"></i>
-                                    </a>          
-                                    <a class="me-1 btn btn-danger" href="{{ path('delivered_command', {id: command.id}) }}" onclick="return confirm('Etes vous sûr de vouloir conclure la vente de {{ command.Article.title}} pour {{ command.User.name }} {{command.User.lastname }} ?')">
-                                        <i class="fas fa-handshake"></i>
-                                    </a> 
-                                    <a class="me-1 btn btn-danger" href="{{ path('delete_command', {id: command.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer {{ command.Article.title}} pour {{ command.User.name }} {{command.User.lastname }} ?')">
-                                        <i class="fas fa-trash"></i>
-                                    </a> 
-                                </div>                                                  
-                            </td>
-                        </tr>
-                    {% endfor %}
-                                     
-                </tbody>
-            </table>
-        </div> 
-        <div>
-            <a href="{{ path('admin') }}"><div class="btn btn-danger my-3">Retour</div></a>
-        </div>     
+	{# Listing commands #}
+	<div class="mb-3">
+		<p>
+			Nbr de commandes :
+			{{ commands|length }}<br>
+			{# Total des commandes :
+																																	{% for command in commands %}
+																																		{{ command.article.prix|sum|format_currency('EUR') }}<br>
+																																	{% endfor %} #}
+		</p>
+		<table class="table mb-3">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Prix</th>
+					<th>Images</th>
+					<th>Client</th>
+					<th>Adresse</th>
+					<th>Status</th>
+					<th class="text-center">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for command in commands %}
+					<tr>
+						<td>{{command.Article.title}}</td>
+						<td>{{command.Article.prix|format_currency('EUR')}}</td>
+						<td>
+							{% for img in command.Article.images %}
+								{% if loop.first %}
+									<div class="img-ratio" style="--ratio:100%;">
+										<div class="img">
+											<img class="d-block w-100" src="{{ img|image }}" alt="image de">
+										</div>
+									</div>
+								{% endif %}
+							{% endfor %}
+						</td>
+						<td>{{command.User.name|capitalize}}
+							{{command.User.lastname|upper}}</td>
+						<td>{{command.User.adress}}
+							-
+							{{ command.User.postcode }}
+							{{ command.User.city }}</td>
+						<td>
+							{% for status in command.status %}
+								{{status}}								
+							{% endfor %}
+						</td>
+							
+						
+						<td>	
+							{% for status in command.status %}						
+								<div class="d-flex justify-content-center align-items-center">
+									<a class="me-1 btn btn-primary {{status is same as('Reçu') ? 'command_active'}}"
+										href="{{ path('received_command', {id: command.id}) }}">
+											<i class="fas fa-concierge-bell"></i>
+									</a>
+									<a class="me-1 btn btn-primary {{status is same as('En cours de fabrication') ? 'command_active'}}"
+										href="{{ path('progress_command', {id: command.id}) }}">
+											<i class="fas fa-hammer"></i>
+									</a>
+									<a class="me-1 btn btn-primary {{status is same as('En livraison') ? 'command_active'}}"
+										href="{{ path('delivering_command', {id: command.id}) }}">
+											<i class="fas fa-truck"></i>
+									</a>
+									<a class="me-1 btn btn-danger btn-red {{status is same as('Livré') ? 'command_active'}}"
+										href="{{ path('delivered_command', {id: command.id}) }}" onclick="return confirm('Etes vous sûr de vouloir conclure la vente de {{ command.Article.title}} pour {{ command.User.name }} {{command.User.lastname }} ?')">
+											<i class="fas fa-handshake"></i>
+									</a>
+									<a class="me-1 btn btn-danger btn-red"
+										href="{{ path('delete_command', {id: command.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer {{ command.Article.title}} pour {{ command.User.name }} {{command.User.lastname }} ?')">
+											<i class="fas fa-trash"></i>
+									</a>
+								</div>
+							{% endfor %}
+						</td>							
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>	
+				<tr>
+					<td>
+						La somme des commandes est de : {{sum|format_currency('EUR')}}.	
+					</td>
+				</tr>					
+			</tfoot>
+		</table>
+	</div>
 
-
+	<div>
+		<a href="{{ path('admin') }}">
+			<div class="btn btn-danger my-3">Retour</div>
+		</a>
+	</div>
 {% endblock %}
