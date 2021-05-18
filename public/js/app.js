@@ -79,25 +79,4 @@ $(function(){
         })    
     })
 
-    // /////////////////////Galerie////////////////////////
-    // $('.galerie_cadre').on('click', function(e) {               
-    //     let src_target = $(e.target).attr('src');        
-    //     $(".galerie_affichage").prepend('<div class="galerie_affichage_photo"></div>');
-    //     let img = $('<img/>', {
-    //     class: 'imageAfficher',
-    //     src: src_target,
-    //     }).appendTo($('.galerie_affichage_photo'));
-    //     $('.galerie_affichage').css('display', 'flex'); 
-    //     $(".galerie_affichage").prepend('<div class="galerie_overlay"></div>');
-    //     $('.galerie_affichage_photo').prepend('<i class="fas fa-times fermer_affichage"></i>');
-    //     $('.galerie_affichage_photo').prepend('<i class="fas fa-arrow-right galerie_suivant"></i>');
-    //     $('.galerie_affichage_photo').prepend('<i class="fas fa-arrow-left galerie_precedent"></i>');
-
-    //     ////fermer affichage/////
-    //     $('.fermer_affichage').on('click', function() {
-    //         $('.galerie_affichage').css('display', 'none');
-    //         $(".galerie_affichage").empty();
-    //     });        
-    // }) 
-
 })//jquery

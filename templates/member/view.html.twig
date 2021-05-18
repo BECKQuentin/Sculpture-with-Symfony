@@ -7,9 +7,10 @@
             {% if app.user %}
             <p class="mb-2">{{ user.email }}</p>
             <p class="mb-2">{{ user.phone|phone }}</p>
-            <p class="mb-2">{{ user.adress }}
-            <br>{{ user.postcode }} - {{ user.city }}
-            <br>
+            <p class="mb-2">
+                {{ user.adress }}
+                <br>{{ user.postcode }} - {{ user.city }}
+                <br>
             </p>
             {% endif %}
         </div>
@@ -20,12 +21,13 @@
             <a class="btn btn-secondary btn-profil mb-2" href="{{ path('member_update') }}">Modifier mon profil</a>            
             {% if is_granted('ROLE_ADMIN') %}
             @Admin
-            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('member_listing') }}">Gérer les membres</a>            
             <a class="btn btn-secondary btn-profil mb-2" href="{{ path('add_article') }}">Ajouter des Articles</a>             
-            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('articles_listing') }}">Gérer les Articles</a>            
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('articles_listing') }}">Gérer les Articles</a> 
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('member_listing') }}">Gérer les membres</a> 
             <a class="btn btn-secondary btn-profil mb-2" href="{{ path('commands_listing') }}">Gérer les Commandes</a>            
             <a class="btn btn-secondary btn-profil mb-2" href="{{ path('messages_listing') }}">Gérer les Messages</a>            
             <a class="btn btn-secondary btn-profil mb-2" href="{{ path('materials_listing') }}">Gérer les Matériaux</a>            
+            <a class="btn btn-secondary btn-profil mb-2" href="{{ path('menus') }}">Gérer les Menus</a>            
             {% endif %}
         </div>
     </div>

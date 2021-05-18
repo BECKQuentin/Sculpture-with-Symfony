@@ -12,9 +12,10 @@ class BaseController extends AbstractController
      * @Route("/", name="home")
      */
     public function home(): Response
-    {        
-        return $this->render('base/home.html.twig', [
+    {   
 
+        return $this->render('base/home.html.twig', [
+            
         ]);
     }  
      

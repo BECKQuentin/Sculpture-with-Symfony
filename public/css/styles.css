@@ -240,7 +240,12 @@ nav li ul li:hover {
 }
 
 /*-----------------Carousel_Accueil----------------*/
-.carousel {
+#carousel_home {
+  width: 50%;
+  padding-bottom: 50px;
+}
+
+/* .carousel {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,7 +304,7 @@ nav li ul li:hover {
 .nightmode_off_rond:hover::after {
   animation: agrandirRondNoir 1s;
   animation-fill-mode: forwards;
-}
+} */
 
 /*----------------------Galerie--------------------*/
 #galerie {

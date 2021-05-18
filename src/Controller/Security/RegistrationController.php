@@ -91,15 +91,16 @@ class RegistrationController extends AbstractController
         WebAuthenticator $authenticator,
         Request $request)
     {
+        
         $id = $encryptor->decrypt($token);
         $user =$userRepository->find($id);
-
+        
         if (!$user) {
             throw $this->createNotFoundException("Votre compte n'a pas été trouvé");
         }
 
         $user->setEmailVerified(true);
-        $user->setRoles(['MEMBER']);
+        $user->setRoles(['ROLE_MEMBER']);
 
         $em = $this->getDoctrine()->getManager();
         $em->flush();

@@ -2,15 +2,19 @@
 
 {% block body %}
 
-    Bonjour {{ user.name }}, <br><br>
+    Bonjour {{ user.name|capitalize }} {{user.lastname|upper}}, <br><br>
 
     Nous vous confirmons la commande de l'article suivant: <br><br>
 
-    {{article.title|capitalize}}<br>
-    {{article.description}}<br>
-    {{article.weight}}<br>
-    {{article.prix|format_currency('EUR')}}<br><br>
+    {{article.title|capitalize}}<br><br>
+    Description : {{article.description}}<br>
+    Poids : {{ article.weight|weight }}<br>
+    Prix : {{article.prix|format_currency('EUR')}}<br><br>
 
-    Nous vous tiendrons informer de l'avancement de votre commande.
+    Nous vous tiendrons informer de l'avancement de votre commande.<br><br>
+
+    Bien à vous,<br><br>
+
+    Sculpture BECK Quentin<br><br>
 
 {% endblock %}

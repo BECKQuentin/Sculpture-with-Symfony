@@ -76,7 +76,7 @@ class CommandController extends AbstractController
 
             //Email de commande            
             $emailService->send([                
-                'to' => $user->getEmail, //if empty => adminEmail
+                'to' => $user->getEmail(), //if empty => adminEmail
                 'subject' => 'Confirmation de commmande',
                 'template' => 'email/command/confirmCommand.html.twig',
                 'context' => [

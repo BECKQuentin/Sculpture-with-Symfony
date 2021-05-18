@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Images Accueil{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center">Images du carousel Accueil</h1>
+            <div class="text-center">
+                {{ form_start(form) }}
+                                   
+                    {{form_row(form.name)}}
+                    <div class="d-flex justify-content-between my-3">
+                        {{ form_row(form.submit) }}                         
+                    </div>  
+                {{ form_end(form) }}
+            </div>
+
+	{# Listing articles #}
+	{# <div class="mb-3">
+		<table class="table mb-3">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Poids</th>
+					<th>Prix</th>
+					<th>Categorie</th>
+					<th>Images</th>
+					<th class="text-center">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for homeImage in homeImages %}
+					<tr class="all_articles">
+						<td>{{article.title}}</td>
+						<td>{{article.description}}</td>
+						<td>{{article.weight}}</td>
+						<td>{{article.prix|format_currency('EUR')}}</td>
+						<td>{{article.categorie.nom}}</td>
+						<td>
+							{% for img in article.images %}
+								<div class="img-ratio" style="--ratio:100%;">
+									<div class="img p-2">
+										<img src="{{ img|image }}" alt="image de">
+									</div>
+								</div>
+							{% endfor %}
+						</td>
+						<td>
+							<div class="d-flex">
+								<a class="me-1 btn btn-primary" href="{{ path('update_article', {id: article.id}) }}">
+									<i class="fas fa-pen"></i>
+								</a>
+								<a class="me-1 btn btn-danger btn-red" href="{{ path('delete_article', {id: article.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet article ?')">
+									<i class="fas fa-trash"></i>
+								</a>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+
+
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<a href="{{ path('admin') }}">
+			<div class="btn btn-danger my-3">Retour</div>
+		</a>
+	</div> #}
+
+{% endblock %}
