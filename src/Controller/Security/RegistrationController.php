@@ -32,8 +32,9 @@ class RegistrationController extends AbstractController
     {
         
         if ($this->getUser()) {
-            return $this->redirectToRoute('login');
-            
+            if($this->container->get('security.authorization_checker')->isGranted('ROLE_MEMBER')) {            
+                return $this->redirectToRoute('redirect_user');   
+            }                    
         }
 
         $user = new User();
@@ -49,16 +50,14 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $user->setRoles(['ROLE_MEMBER']);
+            $user->setRoles(['ROLE_UNVERIFIED']);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
-            $entityManager->flush();
-
-            // do anything else you need here, like send an email
+            $entityManager->flush();            
             
             //Envoi mail
             $emailService->send([                
-                'to' => '$user->getEmail', //if empty => adminEmail
+                'to' => $user->getEmail(), //if empty => adminEmail
                 'subject' => 'Validez votre inscription',
                 'template' => 'email/verify_email.html.twig',
                 'context' => [
@@ -100,6 +99,7 @@ class RegistrationController extends AbstractController
         }
 
         $user->setEmailVerified(true);
+        $user->setRoles(['MEMBER']);
 
         $em = $this->getDoctrine()->getManager();
         $em->flush();

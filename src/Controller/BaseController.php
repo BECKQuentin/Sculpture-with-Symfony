@@ -36,7 +36,11 @@ class BaseController extends AbstractController
         }
         elseif ($this->isGranted('ROLE_MEMBER')) {
             return $this->redirectToRoute('member');
-        }
+        }       
+        elseif ($this->isGranted('ROLE_UNVERIFIED')) { 
+            $this->addFlash('danger', 'Vérifier votre adresse Email pour vous connecter.');           
+            return $this->redirectToRoute('app_login');
+        }       
         else {
             return $this->redirectToRoute('home');
         }

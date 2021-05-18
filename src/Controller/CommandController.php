@@ -7,6 +7,7 @@ use App\Entity\Command;
 use App\Entity\User;
 use App\Repository\CommandRepository;
 use App\Repository\UserRepository;
+use App\Service\EmailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,8 +58,10 @@ class CommandController extends AbstractController
     /**
      * @Route("/command-article/{id}", name="command_article")
      */
-    public function seeArticle(Article $article): Response
+    public function seeArticle(Article $article, EmailService $emailService): Response
     {
+        $user = $this->getUser();
+
         if ($this->container->get('security.authorization_checker')->isGranted('ROLE_MEMBER')) {
 
             $command = new Command;
@@ -70,6 +73,18 @@ class CommandController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($command);
             $em->flush();
+
+            //Email de commande            
+            $emailService->send([                
+                'to' => $user->getEmail, //if empty => adminEmail
+                'subject' => 'Confirmation de commmande',
+                'template' => 'email/command/confirmCommand.html.twig',
+                'context' => [
+                    'user' => $user,
+                    'command' => $command,
+                    'article' => $article,
+                ],
+            ]);
 
             $this->addFlash('success', 'Félicitations commande passée avec succès ! Un Email de confirmation vient de vous être envoyé ');
             return $this->redirectToRoute('member_commands');

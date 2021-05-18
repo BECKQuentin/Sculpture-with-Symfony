@@ -54,7 +54,7 @@ class EmailService
             ->from($data['from'] ?? $this->emailAdmin)
             ->to($data['to'] ?? $this->emailAdmin)
             ->replyTo($data['replyTo'] ?? $data['from'] ?? $this->emailAdmin)
-            ->subject($data['subject'] ?? 'La-la-share')     
+            ->subject($data['subject'] ?? 'BECK Quentin Sculpture')     
             ->htmlTemplate($data['template'])
             ->context($data['context'] ?? [])
         ;

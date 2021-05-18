@@ -1,0 +1,16 @@
+{% extends "email/base.html.twig" %}
+
+{% block body %}
+
+    Bonjour {{ user.name }}, <br><br>
+
+    Nous vous confirmons la commande de l'article suivant: <br><br>
+
+    {{article.title|capitalize}}<br>
+    {{article.description}}<br>
+    {{article.weight}}<br>
+    {{article.prix|format_currency('EUR')}}<br><br>
+
+    Nous vous tiendrons informer de l'avancement de votre commande.
+
+{% endblock %}

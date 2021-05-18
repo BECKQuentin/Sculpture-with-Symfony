@@ -46,7 +46,7 @@
 					</li>
 				</a>
 
-				{% if is_granted('ROLE_USER') %}
+				{% if is_granted('ROLE_MEMBER') %}
 					<a href="{{ path('redirect_user') }}">
 						<li class="{{ route_name in ['admin','member'] ? 'selected_page' }}">
 							<i class="fas fa-user-cog"></i>
