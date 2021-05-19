@@ -14,9 +14,10 @@ class ImagesHomeFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', FileType::class, [
-                'label' => 'Images :',
-                'multiple' => true
+            ->add('image', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
             ])            
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',                

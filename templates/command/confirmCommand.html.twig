@@ -12,7 +12,7 @@
 					<div class="img">
 						{% for img in article.images %}
 							{% if loop.first %}
-								<img class="d-block w-100" src="{{ img|image }}" alt="">
+								<img class="d-block w-100" src="{{ img|imageArticle }}" alt="">
 							{% endif %}
 						{% endfor %}
 					</div>
@@ -59,14 +59,12 @@
 							<p>Prix :
 								{{ article.prix|format_currency('EUR') }}</p>
 						</div>
-
-						<div class="achat_btn pe-2">
-							<a href="{{ path('command_article', {id: article.id}) }}">
-								<button>
-									Confirmer la commande
-								</button>
-							</a>
-						</div>
+						
+						<a href="{{ path('command_article', {id: article.id}) }}">
+							<button class="achat_btn btn btn-danger btn-red">
+								Confimer la commande
+							</button>
+						</a>						
 
 					</div>
 				</div>

@@ -4,16 +4,40 @@
 
 {% block body %}
 
-    <h1 class="text-center">Images du carousel Accueil</h1>
-            <div class="text-center">
-                {{ form_start(form) }}
-                                   
-                    {{form_row(form.name)}}
-                    <div class="d-flex justify-content-between my-3">
-                        {{ form_row(form.submit) }}                         
-                    </div>  
-                {{ form_end(form) }}
-            </div>
+    <h1 class="text-center mb-3">Images du carousel Accueil</h1>
+
+	<div class="col-3 mx-auto mb-5">
+		{{ form_start(form) }}
+							
+			<div class="d-flex">
+
+				<div class="d-flex align-items-end">
+					{{form_row(form.image)}}
+				</div>							
+					{{form_row(form.submit)}}
+				
+			</div>                
+			
+		{{ form_end(form) }}
+	</div>
+
+	<div class="offset-xl-1 col-10 images_home">
+		{% for img in imagesHome %}
+			
+			<div class="card m-3" style="width: 18rem;">
+				<div class="d-flex justify-content-end">
+					
+					<a href="{{ path('delete_imagesHome', {id:img.id}) }}">
+						<div class="images_home_action btn-close"></div>				
+					</a>
+
+				</div>
+				<img class="card-img-top" src="{{img|image}}" alt="Card image cap">
+			</div>
+			
+		{% endfor %}
+	</div>
+	
 
 	{# Listing articles #}
 	{# <div class="mb-3">

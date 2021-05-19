@@ -8,11 +8,11 @@
 		</a>
 	</div>
 {% else %}
-	<div class="achat_btn pe-2">
-		<a href="{{ path('article', {id: article.id}) }}">
-			<button>
-				Voir plus
-			</button>
-		</a>
-	</div>
+	
+	<a href="{{ path('article', {id: article.id}) }}">
+		<button class="achat_btn_voir btn btn-danger btn-red me-2">
+			Voir plus
+		</button>
+	</a>
+	
 {% endif %}

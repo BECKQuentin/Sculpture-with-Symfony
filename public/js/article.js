@@ -32,8 +32,6 @@ $(function(){
     $('#see_message a').click(function() {
 
         getMessageText = $(this).data('getMessageText');
-        
-        console.log(getMessageText);
 
         $('#message_modal_body p').text(getMessageText);
     })

@@ -12,7 +12,7 @@
 					<div class="img vue_article_return">
 						{% for img in article.images %}
 							{% if loop.first %}
-								<img class="d-block w-100" src="{{ img|image }}" alt="">
+								<img class="d-block w-100" src="{{ img|imageArticle }}" alt="">
 							{% endif %}
 						{% endfor %}
 					</div>
@@ -20,11 +20,11 @@
 			</div>
 			<div>
 				{% for img in article.images %}
-					<div class="vue_article_miniature" data-get-article-image="{{ img|image }}">
+					<div class="vue_article_miniature" data-get-article-image="{{ img|imageArticle }}">
 						<div class="vue_article_miniature_cadre">
 							<div class="img-ratio" style="--ratio:80%;">
 								<div class="img">
-									<img src="{{ img|image }}" alt="image de {{article.title}}">
+									<img src="{{ img|imageArticle }}" alt="image de {{article.title}}">
 								</div>
 							</div>
 						</div>
@@ -67,13 +67,13 @@
 					</div>
 				{% endif %}
 				{% if is_granted('ROLE_MEMBER')%}					
-					<div class="achat_btn pe-2">
-						<a href="{{ path('confirm_command', {id: article.id}) }}">
-							<button>
-								Commander
-							</button>
-						</a>
-					</div>
+					
+					<a href="{{ path('confirm_command', {id: article.id}) }}">
+						<button class="achat_btn btn btn-danger btn-red">
+							Commander
+						</button>
+					</a>
+					
 				{% else %}
 					<a class="btn btn-secondary" href="{{path('app_login')}}">
 						Connectez-vous pour commander

@@ -18,15 +18,7 @@ class ArticleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Article::class);
     }
-
-    // public function findArticlesByCategorie($categorie)
-    // {
-    //     return $this->findBy();
-    // }
-
-    // /**
-    //  * @return Article[] Returns an array of Article objects
-    //  */    
+       
     public function findBySearch($search): array
     {
         return $this->createQueryBuilder('a')
@@ -36,6 +28,11 @@ class ArticleRepository extends ServiceEntityRepository
             ->setParameter('search', '%' . $search . '%')
             ->getQuery()
             ->getResult();
+    }
+   
+    public function findRecentsArticles(int $limit = null)
+    {
+        return $this->findBy([], ['id' => 'DESC'], $limit);
     }
 
     // /**

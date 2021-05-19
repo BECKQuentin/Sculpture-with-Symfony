@@ -24,6 +24,16 @@ class UploadService
         return $fileName;
     }
 
+    public function uploadImagesHome(UploadedFile $images)
+    {
+        $fileName = $this->createFileName($images);
+
+        $path = $this->uploadImagesDirectory . "/" . "home";
+        $images->move($path, $fileName);
+
+        return $fileName;
+    }
+
     private function createFileName(UploadedFile $file): string
     {
         $slugger = new AsciiSlugger();

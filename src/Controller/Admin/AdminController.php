@@ -67,8 +67,9 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             $images = $form->get('images')->getData();            
+            
             if ($images) {
                 foreach ($images as $image) {
                     $fileName = $uploadService->uploadImages($image, $article); 
@@ -131,12 +132,30 @@ class AdminController extends AbstractController
     * @Route("/admin/update/{id}", name="update_article")
     * @IsGranted("ROLE_ADMIN", message="Seules les ADMINS peuvent faire ça")
     */
-    public function memberUpdate(Article $article, Request $request)
+    public function memberUpdate(Article $article, Request $request, UploadService $uploadService)
     {     
+        //delete old images
+        $imagesRemoved = $article->getImages();    
+        foreach ($imagesRemoved as $img) {
+            $article->removeImage($img);
+        }
+        
+        //update new infos
         $form = $this->createForm(ArticleFormType::class, $article);        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $images = $form->get('images')->getData();            
+            
+            if ($images) {
+                foreach ($images as $image) {
+                    $fileName = $uploadService->uploadImages($image, $article); 
+                    $img = new Images();                    
+                    $img->setName($fileName);
+                    $article->addImage($img);   
+                }
+            }
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);

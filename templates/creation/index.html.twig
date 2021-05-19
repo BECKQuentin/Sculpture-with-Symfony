@@ -3,17 +3,15 @@
 {% block title %}Création{% endblock %}
 
 {% block body %}							
-    <div id="galerie">
-        <div class="galerie_affichage">														
-        </div>
+    <div id="galerie">        
         <div class="galerie_cadre">
             {% for creation in creations %}
                 <a href='#' 
                 data-bs-toggle='modal' 
                 data-bs-target='#creationModal' 
-                data-get-creation-image="{{ creation.image|creation }}"
+                data-get-creation-image="{{ creation|image }}"
                 data-get-creation-title="{{ creation.title }}">
-                    <img src="{{ creation.image|creation }}" alt="{{ creation.title }}">           
+                    <img src="{{ creation|image }}" alt="{{ creation.title }}">           
                 </a>       
             {% endfor %}     
         </div>

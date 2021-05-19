@@ -27,6 +27,11 @@ class Creation
      */
     private $image;
 
+    public function getImagesDirectory(): string
+    {
+        return 'creations'.'/';
+    }
+
     public function getId(): ?int
     {
         return $this->id;

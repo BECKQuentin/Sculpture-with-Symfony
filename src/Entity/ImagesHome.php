@@ -20,21 +20,26 @@ class ImagesHome
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $image;
+
+    public function getImagesDirectory(): string
+    {
+        return 'home'.'/';
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getImage(): ?string
     {
-        return $this->name;
+        return $this->image;
     }
 
-    public function setName(string $name): self
+    public function setImage(string $image): self
     {
-        $this->name = $name;
+        $this->image = $image;
 
         return $this;
     }

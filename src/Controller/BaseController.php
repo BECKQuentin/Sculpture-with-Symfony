@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
+use App\Repository\ImagesHomeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,11 +13,12 @@ class BaseController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(): Response
+    public function home(ImagesHomeRepository $imagesHomeRepository, ArticleRepository $articleRepository): Response
     {   
-
+        
         return $this->render('base/home.html.twig', [
-            
+            'imagesHome' => $imagesHomeRepository->findAll(),
+            'recentsArticles' => $articleRepository->findRecentsArticles(5),
         ]);
     }  
      

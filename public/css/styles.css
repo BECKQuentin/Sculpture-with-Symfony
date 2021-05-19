@@ -33,6 +33,9 @@ html {
   padding-bottom: 10px;
   padding-left: 15px;
 }
+#toolbar a {
+  text-decoration: none !important;
+}
 #titre_principale {
   display: flex;
   flex-direction: column;
@@ -74,9 +77,7 @@ h5/*titre rubrique*/ {
 .table td {
   color: #fff;
 }
-#toolbar a {
-  text-decoration: none !important;
-}
+
 /*-------------------------MENU-------------------*/
 nav {
   margin-right: 7%;
@@ -96,6 +97,7 @@ nav li {
   font-size: 1.1em;
   border-radius: 3px;
   border: 2px solid rgba(0, 0, 0, 0);
+  position: relative;
 }
 
 nav li:hover {
@@ -132,8 +134,8 @@ nav ul li:hover ul {
   border: 2px solid #8a2a2d;
 }
 nav li ul {
-  position: absolute;
-  z-index: 2;
+  position: absolute;  
+  z-index: 50;
   transform: translate(-15%);
   background-color: #212121;
   border-radius: 5px;
@@ -201,7 +203,7 @@ nav li ul li:hover {
 /*--------------Accueil---------*/
 .container {
   background-color: #212121;
-  max-width: none !important;
+  max-width: none !important;    
 }
 .titre_accueil {
   display: flex;
@@ -240,71 +242,40 @@ nav li ul li:hover {
 }
 
 /*-----------------Carousel_Accueil----------------*/
+.carousel_home_box {
+  display: flex;
+  justify-content: center;
+}
 #carousel_home {
-  width: 50%;
-  padding-bottom: 50px;
+  width: 60%;
+  padding-bottom: 50px;  
 }
-
-/* .carousel {
+.novelties_card_box {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center;  
+  flex-wrap: wrap;
 }
-.cadre {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px;
+.novelties_card_box a {
+  text-decoration: none;
+  color: #fff;
 }
-.slideshow {
-  margin: 10px;
-  width: 450px;
-  height: 450px;
-  overflow: hidden;
+.novelties_card {
+  background-color: #373737;
+  height: 100%;
 }
-.slideshow ul {
-  width: 700%;
-  height: 400px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+.novelties_card h5 {
+  color: #fff !important;
 }
-.slideshow li {
-  float: left;
-}
-
-.precedent,
-.suivant {
-  color: #edebeb;
-  padding: 1.4rem;
-  font-size: 30px;
-  position: relative;
-}
-.precedent::after,
-.suivant::after {
-  content: "";
-  position: absolute;
-  top: 14%;
-  left: 13%;
-  height: 50px;
-  width: 50px;
-  border-radius: 50px;
-}
-.precedent:hover,
-.suivant:hover {
+.novelties_card:hover {
   cursor: pointer;
-  animation: growUpp 1s;
-  animation-fill-mode: forwards;
+  animation: growUp 1s forwards;
 }
-.nightmode_on_rond:hover::after {
-  animation: agrandirRondBlanc 1s;
-  animation-fill-mode: forwards;
+.novelties_card_body {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
-.nightmode_off_rond:hover::after {
-  animation: agrandirRondNoir 1s;
-  animation-fill-mode: forwards;
-} */
+
 
 /*----------------------Galerie--------------------*/
 #galerie {
@@ -333,71 +304,6 @@ nav li ul li:hover {
 .galerie_cadre img:hover {
   cursor: pointer;
   animation: slideInGalerie 0.7s forwards;
-}
-
-/*Agrandissement*/
-.galerie_overlay {
-  position: absolute;
-  z-index: 1;
-  height: 100%;
-  width: 150%;
-  background-color: #212121;
-  opacity: 0.9;
-}
-.galerie_affichage {
-  position: absolute;
-  height: 80%;
-  width: 80%;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-.galerie_affichage_photo {
-  position: absolute;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-.galerie_affichage_photo img {
-  border: 2px solid #212121;
-  position: relative;
-  z-index: 2;
-  height: 100%;
-}
-.fermer_affichage {
-  color: #8a2a2d;
-  font-size: 2.5rem;
-  position: absolute;
-  z-index: 3;
-  top: 20px;
-  right: 38px;
-  cursor: pointer;
-}
-.fermer_affichage:hover,
-.galerie_suivant:hover,
-.galerie_precedent:hover {
-  animation: growUppp 1s;
-  animation-fill-mode: forwards;
-}
-.galerie_suivant {
-  color: #8a2a2d;
-  font-size: 2.5rem;
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  right: -30px;
-  cursor: pointer;
-}
-.galerie_precedent {
-  color: #8a2a2d;
-  font-size: 2.5rem;
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  left: -30px;
-  cursor: pointer;
 }
 
 /*----------------------Boutique------------------*/
@@ -484,12 +390,15 @@ nav li ul li:hover {
 .achat_prix p {
   margin-top: 1rem;
 }
-.achat_btn button {
-  border: 0;
-  padding: 0px 10px;
-  border-radius: 5px;
-  background-color: #a83236;
-  color: #fff;
+.achat_btn  {  
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border-radius: 5px; 
+}
+.achat_btn_voir {
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  border-radius: 5px; 
 }
 .achat_btn button:hover {
   animation: growUp 1s forwards;
@@ -648,6 +557,18 @@ nav li ul li:hover {
   box-shadow: 5px 5px 15px black;
 }
 
+/*-------MENUS----*/
+.images_home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.images_home_action {
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
 /*-----------------------Footer-----------------------*/
 
 #favicon {
@@ -724,6 +645,7 @@ nav li ul li:hover {
 }
 .img-ratio > .img {
   position: absolute;
+  z-index: 0;
   top: 0;
   left: 0;
   right: 0;

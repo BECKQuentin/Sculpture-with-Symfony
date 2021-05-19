@@ -24,6 +24,7 @@ class AppExtension extends AbstractExtension
             // parameter: ['is_safe' => ['html']]
             // Reference: https://twig.symfony.com/doc/2.x/advanced.html#automatic-escaping
             new TwigFilter('image', [$this, 'getImages']),
+            new TwigFilter('imageArticle', [$this, 'getImagesArticle']),
             new TwigFilter('creation', [$this, 'getCreation']),
             new TwigFilter('phone', [$this, 'addPhone']),
             new TwigFilter('short', [$this, 'setShort']),
@@ -32,7 +33,20 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    public function getImages(object $entity, string $nameProperty = 'name'): string
+    public function getImages(object $entity, string $nameProperty = 'image'): string
+    {
+        $images = $entity->{'get' . ucwords($nameProperty)}();
+
+        if ($images) {
+            return $this->publicImagePath
+            . '/' . $entity->getImagesDirectory()
+            . '/' . $images;
+        } else {
+            return '';
+        }       
+    }
+
+    public function getImagesArticle(object $entity, string $nameProperty = 'name'): string
     {
         $images = $entity->{'get' . ucwords($nameProperty)}();
 
