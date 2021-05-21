@@ -25,7 +25,7 @@ $(function(){
         $('.member_infos').toggleClass('nightmode_off_black');
         $('.member_button').toggleClass('nightmode_off_black');
         $('.add_article').toggleClass('nightmode_off_black');
-        $('.confirm_command').toggleClass('nightmode_off_black');
+        $('.confirm_command').toggleClass('nightmode_off_black');        
         
     }
     if (localStorage.getItem('nightmode') == 'off') {

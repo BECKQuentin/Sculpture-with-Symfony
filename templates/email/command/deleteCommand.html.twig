@@ -1,0 +1,21 @@
+{% extends "email/base.html.twig" %}
+
+{% block body %}
+
+    Bonjour {{ user.name|capitalize }} {{user.lastname|upper}}, <br><br>
+
+    Nous vous informons que votre commande à été <b>supprimé</b> !<br><br>    
+
+    ----------<br>
+    {{article.title|capitalize}}<br><br>
+    Description : {{article.description}}<br>
+    Poids : {{ article.weight|weight }}<br>
+    Prix : {{article.prix|format_currency('EUR')}}<br><br>
+
+    Nous vous remerçions pour votre compréhension.<br><br>
+
+    Bien à vous,<br><br>
+
+    Sculpture BECK Quentin<br><br>
+
+{% endblock %}

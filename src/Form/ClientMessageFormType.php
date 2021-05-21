@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\ClientMessage;
+use Gemonos\RecaptchaBundle\Type\RecaptchaSubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -29,7 +30,7 @@ class ClientMessageFormType extends AbstractType
                 'attr' => [
                     'class' => 'btn-primary mt-3'
                 ]
-            ])            
+            ])     
         ;
         
     }

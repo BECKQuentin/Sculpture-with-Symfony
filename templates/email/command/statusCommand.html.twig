@@ -4,23 +4,24 @@
 
     Bonjour {{ user.name|capitalize }} {{user.lastname|upper}}, <br><br>
 
-    Nous vous confirmons la commande de l'article suivant: <br><br><br>
-    
-    
-    {{article.title|capitalize}}<br>
-    ----------<br><br>
+    Nous vous informons que l'etat de votre commande a changé :<br><br>
+
+    Etat : {% for status in command.status %}{{status}}{% endfor %}<br><br>
+
+    ----------<br>    
+    {{article.title|capitalize}}<br><br>
 
     Description : {{article.description}}<br>
     Poids : {{ article.weight|weight }}<br>
     Prix : {{article.prix|format_currency('EUR')}}<br><br>
 
-    Adresse de livraison :<br>
-    -----------<br><br>    
+    -----------<br>
+    Adresse de livraison :<br><br>
 
     {{user.name|capitalize}}{{user.lastname|upper}}<br>
     {{user.adress}}<br>
-    {{user.postcode}} - {{user.city}}<br><br><br>
-    
+    {{user.postcode}} - {{user.city}}<br><br>
+
     Nous vous tiendrons informer de l'avancement de votre commande.<br><br>
 
     Bien à vous,<br><br>

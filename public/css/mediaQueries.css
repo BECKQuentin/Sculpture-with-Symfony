@@ -1,0 +1,122 @@
+
+
+/*--Phones---------------------------------------------*/
+ /* @media (max-width: 480px) {  
+  #galerie {
+    padding: 10px 45px;
+  } 
+  
+
+  .container_contact {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .contact {
+    height: 100%;
+    display: contents;
+  }
+  .contact_left {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contact_left_photo img {
+    padding: 20px 0px 0px 0px;
+    width: auto;
+    height: 37vh;
+  } 
+}  */
+
+
+
+
+/*----Larges Phones----------------------------------------------------*/
+/* @media (max-width: 580px) {  
+  
+  
+
+  .contact_right_texte_info {
+    line-height: 30px;
+  }
+
+  .contact {
+    height: 250px;
+  }
+} */
+
+
+
+
+/*Tablets--------------------------------------------------*/
+/* @media (max-width: 768px) {
+  
+  .contact_right_texte_info {
+    line-height: 25px;
+  }
+  .contact {
+    height: 250px !important;
+  }
+} */
+
+
+
+
+/*Desktops-------------------------------------------------------------*/
+@media (max-width: 980px) {
+  /* .titre_accueil {
+    flex-wrap: wrap;
+  }
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+  }   */
+  
+  /* #boutique {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .contact {
+    height: 350px;
+  } */
+}
+
+
+
+
+@media (max-width: 992px) {
+ 
+  nav {
+    margin-right: auto;
+  }
+
+  /* #carousel_home {
+    width: 100%;
+  }   
+  
+  .contact {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  } */
+}
+
+
+
+
+/*Large Desktops--------------------------------------------------*/
+@media (max-width: 1200px) {    
+    
+  /* #carousel_home {
+    width: 75%;
+  }   */    
+  
+  #toolbar {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  } 
+  nav {
+    margin-top: 11px;
+  }
+} 

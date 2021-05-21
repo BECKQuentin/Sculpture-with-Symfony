@@ -53,7 +53,8 @@ class MemberController extends AbstractController
     }
 
     /**
-    * @Route("/member-commands", name="member_commands")    
+    * @Route("/member-commands", name="member_commands")  
+    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")  
     */
     public function memberCommands(): Response
     {

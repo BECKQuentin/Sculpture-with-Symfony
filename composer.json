@@ -12,6 +12,7 @@
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "karser/karser-recaptcha3-bundle": "^0.1.18",
         "nzo/url-encryptor-bundle": "^6.0",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.1",
@@ -65,7 +66,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/"            
         }
     },
     "autoload-dev": {

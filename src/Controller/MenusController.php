@@ -69,6 +69,7 @@ class MenusController extends AbstractController
 
     /**
     * @Route("/delete-imagesHome/{id}", name="delete_imagesHome")
+    * @IsGranted("ROLE_ADMIN", message="Seuls les ADMINS peuvent faire ça")
     */
     public function deleteImagesHome(ImagesHome $imagesHome): Response
     {

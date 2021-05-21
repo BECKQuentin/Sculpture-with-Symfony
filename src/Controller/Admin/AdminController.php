@@ -22,7 +22,8 @@ class AdminController extends AbstractController
 {
     /**
     * @Route("/admin", name="admin")
-    */
+    *@IsGranted("ROLE_ADMIN", message="Seules les ADMINS peuvent faire ça")
+    */    
     public function index(): Response
     {
         $user = $this->getUser();

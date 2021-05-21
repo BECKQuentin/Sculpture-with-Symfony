@@ -7,7 +7,7 @@
 				<div id="contact">
 					<a href="{{ path('contact') }}">
 						<div class="contact_titre">Contact</div>
-						<div class="contact_mail">beckquentin26@gmail.com</div>
+						<div class="contact_mail">sculptureQuentinBECK@gmail.com</div>
 						<div class="contact_telephone">07.70.70.70.30</div>
 					</a>				
 				</div>
@@ -16,9 +16,31 @@
 						<p>
 							© Copyright. Tous droits réservés.
 						</p>
-						<a class="cgv" href="#">
-							Termes et Conditions Générales de Ventes
+						
+						<a href="#"
+							class="cgv mb-3" 
+							data-bs-toggle="modal" 
+							data-bs-target="#cgvModal">
+								Termes et Conditions Générales de Ventes
 						</a>
+
+						{# Modal #}
+						<div class="modal fade" id="cgvModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="creationModalTitle" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content bg-dark">
+									<div class="modal-header"> 
+										<h5 class="modal-title w-100" id="cgvModalTitle">Termes et Conditions Générales de Ventes</h5>                       
+										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body"> 
+										<p>Conditions générales de ventes en écritures</p>
+									</div>  
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>									
+									</div>               
+								</div>
+							</div>
+						</div>						
 					</div>			
 				</div>
 			</div>
