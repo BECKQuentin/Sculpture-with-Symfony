@@ -1,9 +1,10 @@
 {% block content %}
+
+
 	{% for article in articles %}
 		<div class="article">
-			<div class="article_photo">
-
-				<div id="carouselArticle" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1900">
+			<div class="article_photo">	
+				<div id="carouselArticle" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2200">
 					<div class="carousel-inner">
 						{% for img in article.images %}
 							<div class="carousel-item {% if loop.first %} active {% endif %} ">
@@ -27,8 +28,26 @@
 				</div>
 				<hr>
 				<div class="text-center">
-					<p class="my-3">{{ article.description }}</p>
-				</div>
+					<p class="my-3">{{ article.description|short }}</p>
+				</div>	
+				<div class="likes">
+					<a href="{{ path('article_like', {id: article.id}) }}" class="btn btn-link js-like">					
+
+					{% if app.user and article.isLikedByUser(app.user) %}
+						<i class="fas fa-thumbs-up"></i>
+					{% else %}
+						<i class="far fa-thumbs-up"></i>
+					{% endif %}	
+						<span class="js-likes">{{article.articleLikes|length}}</span>
+					
+					{% if app.user and article.isLikedByUser(app.user) %}						
+						<span class="js-label">Je n'aime plus</span>
+					{% else %}
+						<span class="js-label">J'aime</span>
+					{% endif %}
+					
+					</a>					
+				</div>			
 				<div class="achat">
 					<div class="achat_prix">
 						<p>{{ article.prix|format_currency('EUR') }}</p>
@@ -37,7 +56,7 @@
 					{# Voir plus #}
 					{% include "article/_articleButton.html.twig" %}
 
-				</div>
+				</div>				
 			</div>
 		</div>
 	{% endfor %}

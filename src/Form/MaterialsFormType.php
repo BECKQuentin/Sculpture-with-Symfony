@@ -18,7 +18,10 @@ class MaterialsFormType extends AbstractType
                 'label' => 'Nom'
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter Matériaux'
+                'label' => 'Ajouter Matériaux',
+                'attr' => [
+                    'class' => 'btn-primary btn-blue mt-3'
+                ]
             ])
         ;
     }

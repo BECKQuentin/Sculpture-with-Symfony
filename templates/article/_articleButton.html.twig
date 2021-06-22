@@ -1,6 +1,6 @@
 {% if is_granted('ROLE_ADMIN') %}
 	<div class="d-flex">
-		<a class="me-1 btn btn-primary" href="{{ path('update_article', {id: article.id}) }}">
+		<a class="me-1 btn btn-primary btn-blue" href="{{ path('update_article', {id: article.id}) }}">
 			<i class="fas fa-pen"></i>
 		</a>
 		<a class="me-1 btn btn-danger btn-red" href="{{ path('delete_article', {id: article.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet article ?')">

@@ -68,7 +68,7 @@ class CommandController extends AbstractController
 
             $command->setUser($this->getUser());
             $command->setArticle($article);
-            $command->setStatus(['En attente']);
+            $command->setStatus('En attente');
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($command);
@@ -101,7 +101,7 @@ class CommandController extends AbstractController
     public function receivedCommand(Command $command, EmailService $emailService): Response
     {             
         
-        $command->setStatus(['Reçu']);
+        $command->setStatus('Reçu');
         $em = $this->getDoctrine()->getManager();
         $em->persist($command);
         $em->flush();
@@ -131,7 +131,7 @@ class CommandController extends AbstractController
      */
     public function progressCommand(Command $command, EmailService $emailService): Response
     {
-        $command->setStatus(['En cours de fabrication']);
+        $command->setStatus('En cours de fabrication');
         $em = $this->getDoctrine()->getManager();
         $em->persist($command);
         $em->flush();
@@ -161,7 +161,7 @@ class CommandController extends AbstractController
      */
     public function deliveringCommand(Command $command, EmailService $emailService): Response
     {
-        $command->setStatus(['En livraison']);
+        $command->setStatus('En livraison');
         $em = $this->getDoctrine()->getManager();
         $em->persist($command);
         $em->flush();
@@ -191,7 +191,7 @@ class CommandController extends AbstractController
      */
     public function deliveredCommand(Command $command, EmailService $emailService): Response
     {
-        $command->setStatus(['Livré']);
+        $command->setStatus('Livré');
         $em = $this->getDoctrine()->getManager();
         $em->persist($command);
         $em->flush();

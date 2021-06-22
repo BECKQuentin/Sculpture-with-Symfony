@@ -1,5 +1,5 @@
 nzo_encryptor:
-  secret_key: khdkcjhglihmffdsoihyu5-è    # Required, max length of 100 characters.
+  secret_key: khdk5cjhglihm1f9fdsoihyu5yuè    # Required, max length of 100 characters.
   #secret_iv:  YourSecretIv               # Required only if "random_pseudo_bytes" is FALSE. Max length of 100 characters.
   #cipher_algorithm:                      # optional, default: 'aes-256-ctr'
   #base64_encode:                         # optional, default: TRUE

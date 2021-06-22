@@ -64,6 +64,17 @@ class ArticleRepository extends ServiceEntityRepository
         return $articles;
     }
 
+    public function findArticlesByString($str){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT e
+                FROM AppBundle:Entity e
+                WHERE e.article LIKE :str'
+            )
+            ->setParameter('str', '%'.$str.'%')
+            ->getResult();
+    }
+
 
     // // /**
     // //  * @return Playlist[] Returns an array of Playlist objects

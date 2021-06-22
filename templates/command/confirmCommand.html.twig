@@ -29,9 +29,8 @@
 						<p class="night my-3 text-center">
 							<p class="text-center pb-3">{{ article.description }}</p>	
 							---						
-							<p class="text-center">
-								Matériaux :
-								<ul class="text-center">
+							<p class="text-center">								
+								<ul class="text-center p-0">
 								{% for material in article.materials %}
 									{% if not loop.first %}	- {% endif %}
 										<li>{{material.name}}</li>

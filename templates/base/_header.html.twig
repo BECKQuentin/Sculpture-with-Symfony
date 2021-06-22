@@ -63,10 +63,16 @@
 							Connexion
 						</li>
 					</a>
-				{% endif %}				
+				{% endif %}								
 				<a href="{{ path('member_commands') }}">
-					<li class="{{ route_name == 'member_commands' ? 'selected_page' }}">						
-							<i class="fas fa-shopping-cart"></i>
+					<li class="shopping_cart_li {{ route_name == 'member_commands' ? 'selected_page' }}">						
+						<i class="fas fa-shopping-cart">
+							{% if is_granted('ROLE_MEMBER') %}
+								{% if commands|length is not same as(0) %}
+									<div class="cart_counter">{{ commands|length }}</div>
+								{% endif %}
+							{% endif %}
+						</i>
 					</li>
 				</a>				
 

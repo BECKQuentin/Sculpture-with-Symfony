@@ -22,7 +22,7 @@ class ImagesHomeFormType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',                
                 'attr' => [
-                    'class' => 'btn-primary mt-3'
+                    'class' => 'btn-primary btn-blue mt-3'
                 ]
             ])
         ;

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -65,11 +66,17 @@ class Article
      */
     private $materials;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ArticleLike::class, mappedBy="article")
+     */
+    private $articleLikes;    
+
     public function __construct()
     {        
         $this->commands = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->materials = new ArrayCollection();
+        $this->articleLikes = new ArrayCollection();
     }
     
     public function getImagesDirectory(): string
@@ -226,4 +233,50 @@ class Article
 
         return $this;
     }
+
+    /**
+     * @return Collection|ArticleLike[]
+     */
+    public function getArticleLikes(): Collection
+    {
+        return $this->articleLikes;
+    }
+
+    public function addArticleLike(ArticleLike $articleLike): self
+    {
+        if (!$this->articleLikes->contains($articleLike)) {
+            $this->articleLikes[] = $articleLike;
+            $articleLike->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticleLike(ArticleLike $articleLike): self
+    {
+        if ($this->articleLikes->removeElement($articleLike)) {
+            // set the owning side to null (unless already changed)
+            if ($articleLike->getArticle() === $this) {
+                $articleLike->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Permet de savoir si cet article est "liké" par un utilisateur
+     * 
+     * @param User $user
+     * @return boolean
+     */
+    public function isLikedByUser(User $user) : bool 
+    {
+        foreach ($this->articleLikes as $like) {
+            if($like->getUser() == $user) return true;
+        }
+
+        return false;
+    }
+    
 }

@@ -56,9 +56,9 @@ class User implements UserInterface
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $emailVerified;
-
+    
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="string", length=255)
      */
     private $roles = [];
 
@@ -66,12 +66,7 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string", length=255)
      */
-    private $password;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="users")
-     */
-    private $articles;
+    private $password;    
 
     /**
      * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user", orphanRemoval=true)
@@ -88,11 +83,16 @@ class User implements UserInterface
      */
     private $clientMessages;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ArticleLike::class, mappedBy="user")
+     */
+    private $articleLikes;
 
     public function __construct()
     {        
         $this->commands = new ArrayCollection();
         $this->clientMessages = new ArrayCollection();
+        $this->articleLikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -199,19 +199,15 @@ class User implements UserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return array_unique(array_merge(json_decode($this->roles, true), ['ROLE_USER']));
     }
 
     public function setRoles(array $roles): self
     {
-        $this->roles = $roles;
+        $this->roles = json_encode($roles);
 
         return $this;
-    }    
+    }  
 
     /**
      * @see UserInterface
@@ -319,5 +315,34 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|ArticleLike[]
+     */
+    public function getArticleLikes(): Collection
+    {
+        return $this->articleLikes;
+    }
+
+    public function addArticleLike(ArticleLike $articleLike): self
+    {
+        if (!$this->articleLikes->contains($articleLike)) {
+            $this->articleLikes[] = $articleLike;
+            $articleLike->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticleLike(ArticleLike $articleLike): self
+    {
+        if ($this->articleLikes->removeElement($articleLike)) {
+            // set the owning side to null (unless already changed)
+            if ($articleLike->getUser() === $this) {
+                $articleLike->setUser(null);
+            }
+        }
+
+        return $this;
+    }
    
 }

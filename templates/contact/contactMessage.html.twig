@@ -16,24 +16,14 @@
 
             {% endif %}
         
-            <div id="clientMesssageForm">
-                {{ form_start(form) }}
-                <input type="hidden" id="form_captcha" name="form[captcha]" /><script>
-                    var recaptchaCallback_form_captcha = function() {
-                    grecaptcha.execute('6LcmB94aAAAAAAgcOQhm_it9bE75S0pmh48qfHMq', {action: 'landing'}).then(function(token) {
-                    document.getElementById('form_captcha').value = token;
-                    });
-                    };
-                    </script><script src="https://www.google.com/recaptcha/api.js?render=<YOUR-RECAPTCHA-KEY>&onload=recaptchaCallback_form_captcha" async defer></script> 
-                </form>                                   
-                {{ form_end(form) }}
-            </div>
+            <div id="clientMessageForm">
+                {{ form_start(form) }}  
+                    {# <div class="g-recaptcha mt-3" data-sitekey="6LcmB94aAAAAAAgcOQhm_it9bE75S0pmh48qfHMq" data-theme="dark"></div>#}
+                {{ form_end(form) }}    
+            </div>      
 
             <a class="btn btn-danger text-center mt-3" href="{{ path('member') }}">Retour</a>
         </div>
-    </div>
-    
-    
-
+    </div>    
 {% endblock %}
 

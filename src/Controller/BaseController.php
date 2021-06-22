@@ -10,23 +10,32 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BaseController extends AbstractController
 {
+
     /**
      * @Route("/", name="home")
      */
     public function home(ImagesHomeRepository $imagesHomeRepository, ArticleRepository $articleRepository): Response
-    {   
-        
+    {            
         return $this->render('base/home.html.twig', [
             'imagesHome' => $imagesHomeRepository->findAll(),
-            'recentsArticles' => $articleRepository->findRecentsArticles(5),
+            'recentsArticles' => $articleRepository->findRecentsArticles(4),
         ]);
     }  
-     
-    public function header(string $routeName)
-    {
-        return $this->render('base/_header.html.twig', [            
-            'route_name' =>$routeName,
-        ]);     
+    
+    
+    public function header($routeName)
+    {   
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_MEMBER')) {  
+            $user = $this->getUser();
+            $commands = $user->getCommands(); 
+        } else {
+            $commands = null;
+        }
+
+        return $this->render('base/_header.html.twig', [ 
+            'route_name' => $routeName,
+            'commands' => $commands,
+        ]);  
     }
 
     /**

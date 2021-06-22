@@ -31,6 +31,7 @@ class AdminController extends AbstractController
             'user' => $user
         ]);
     }  
+
     /**
     * @Route("/member-listing", name="member_listing")
     * @IsGranted("ROLE_ADMIN", message="Seules les ADMINS peuvent faire ça")
@@ -80,14 +81,6 @@ class AdminController extends AbstractController
                 }
             }
 
-            // $materials = $form->get('materials')->getData();
-            // if($materials) {
-            //     foreach ($materials as $material) {
-            //         $material = new Materials();
-            //         $article->addMaterial($material);
-            //     }
-            // }
-            
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
@@ -133,14 +126,8 @@ class AdminController extends AbstractController
     * @Route("/admin/update/{id}", name="update_article")
     * @IsGranted("ROLE_ADMIN", message="Seules les ADMINS peuvent faire ça")
     */
-    public function memberUpdate(Article $article, Request $request, UploadService $uploadService)
-    {     
-        //delete old images
-        $imagesRemoved = $article->getImages();    
-        foreach ($imagesRemoved as $img) {
-            $article->removeImage($img);
-        }
-        
+    public function articleUpdate(Article $article, Request $request, UploadService $uploadService)
+    {            
         //update new infos
         $form = $this->createForm(ArticleFormType::class, $article);        
         $form->handleRequest($request);
@@ -171,6 +158,19 @@ class AdminController extends AbstractController
             'article' => $article
         ]);
     } 
+
+    /**
+    * @Route("/delete-article-image/{id}", name="delete_article_image")
+    * @IsGranted("ROLE_ADMIN", message="Seules les ADMINS peuvent faire ça")
+    */
+    public function deleteArticleImage(Images $img): Response
+    {
+        $em = $this->getDoctrine()->getManager();        
+        $em->remove($img);
+        $em->flush();   
+              
+        return $this->redirectToRoute('articles_listing');
+    }    
 
     /**
     * @Route("/messages-listing", name="messages_listing")

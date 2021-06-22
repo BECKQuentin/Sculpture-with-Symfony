@@ -21,6 +21,21 @@
                     {{ form_row(form.categorie) }}
                     {{ form_row(form.images) }}
 
+                    <div class="d-flex flex-wrap">
+                        {% for img in article.images %}
+                            <div class="position-relative m-2 w-25">
+                                <div class="img-ratio" style="--ratio:100%;">
+                                    <div class="img">
+                                        <img src="{{ img|imageArticle }}" alt="image de {{article.title}}">
+                                    </div>                                
+                                    <a class="delete_image_article" href="{{ path('delete_article_image', {id: img.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet image ?')">
+										<div class="btn-close"></div>				
+								    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
                     <div class="d-flex justify-content-between">
                         {{ form_row(form.submit) }} 
                         <a href="{{ path('articles_listing') }}"><div class="btn btn-danger btn-red my-3">Retour</div></a>

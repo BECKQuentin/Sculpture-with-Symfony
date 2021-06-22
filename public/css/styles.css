@@ -42,7 +42,7 @@ html {
 }
 /*-----------GENERAL--------*/
 h1 {
-  color: #a83236;
+  color: #8a2a2d;
   font-size: 3.3em;
   font-family: Constantia, fantasy, sans-serif;
   text-shadow: rgba(0, 0, 0, 0.3) 2px 4px 3px;
@@ -76,6 +76,28 @@ h5/*titre rubrique*/ {
 .table th,
 .table td {
   color: #fff;
+}
+/*---My Bootsrtap---*/
+.btn-blue {
+  background-color: rgb(1, 71, 174) !important;
+}
+.btn-blue:hover {
+  background-color: #212121 !important;
+  animation: growUp 1s forwards;
+}
+.btn-green {
+  background-color: #198754 !important;
+}
+.btn-green:hover {
+  background-color: #212121 !important;
+  animation: growUp 1s forwards;
+}
+.btn-red {
+  background-color: #8a2a2d !important;
+}
+.btn-red:hover {
+  background-color: #212121 !important;
+  animation: growUp 1s forwards;
 }
 
 /*-------------------------MENU-------------------*/
@@ -204,22 +226,33 @@ nav li ul li:hover {
   background-color: #8a2a2d;
 }
 
+/*---Cart---*/
+.shopping_cart_li {
+  position: relative;
+}
+.cart_counter {
+  padding: 0px 5px 1px;
+  border-radius: 10px;
+  background-color: #212121;
+  color: #edebeb;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 /*--------------Accueil---------*/
 .container {
   background-color: #212121;
   max-width: 100% !important;
 }
+#titre_principale h1{
+  color: #edebeb;
+}
 .titre_accueil {
   display: flex;
   justify-content: center;
 }
-.btn-red {
-  background-color: #8a2a2d !important;
-}
-.btn-red:hover {
-  background-color: #212121 !important;
-  animation: growUp 1s forwards;
-}
+
 /*-------------Portfolio----------*/
 .portfolio {
   display: flex;
@@ -389,7 +422,6 @@ nav li ul li:hover {
   justify-content: space-between;
   align-items: center;
   font-size: 20px;
-  font-weight: bold;
   color: #707070;
 }
 .achat_prix {
@@ -439,6 +471,17 @@ nav li ul li:hover {
   font-size: 2rem;
   font-weight: bold;
   color: #707070;
+}
+.delete_image_article {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  font-size: 1.5rem;
+}
+.delete_image_article a {
+  color: #212121;
+  border: 1px solid;
 }
 
 /*------Commander----*/
@@ -547,13 +590,6 @@ nav li ul li:hover {
 }
 .back_shop {
   margin: 40px;
-}
-.back_shop :hover {
-  border: 2px solid #8a2a2d;
-  background-color: #212121;
-  border-radius: 5px;
-  box-shadow: 5px 5px 15px black;
-  opacity: 0.7;
 }
 .back_shop a {
   font-size: 2rem;

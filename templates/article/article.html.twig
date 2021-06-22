@@ -36,7 +36,7 @@
 
 		<div class="prix">
 			<div class="text-center text-uppercase">
-				<p class="night my-3">{{ article.title|capitalize }}</p>
+				<p class="night my-3 fs-3">{{ article.title|capitalize }}</p>
 			</div>
 			<hr>
 			<div class="text-center">
@@ -49,7 +49,25 @@
 					{% endfor %}<br>
 					Poids : {{article.weight|weight}}<br>
 				</p>
-			</div>			
+			</div>	
+			<div class="likes text-center">
+					<a href="{{ path('article_like', {id: article.id}) }}" class="btn btn-link js-like">					
+
+					{% if app.user and article.isLikedByUser(app.user) %}
+						<i class="fas fa-thumbs-up"></i>
+					{% else %}
+						<i class="far fa-thumbs-up"></i>
+					{% endif %}	
+						<span class="js-likes">{{article.articleLikes|length}}</span>
+					
+					{% if app.user and article.isLikedByUser(app.user) %}						
+						<span class="js-label">Je n'aime plus</span>
+					{% else %}
+						<span class="js-label">J'aime</span>
+					{% endif %}
+					
+					</a>					
+				</div>				
 
 			<div class="vue_achat">
 				<div class="achat_prix me-4">
@@ -58,7 +76,7 @@
 
 				{% if is_granted('ROLE_ADMIN') %}
 					<div class="d-flex">
-						<a class="me-1 btn btn-primary" href="{{ path('update_article', {id: article.id}) }}">
+						<a class="me-1 btn btn-primary btn-blue" href="{{ path('update_article', {id: article.id}) }}">
 							<i class="fas fa-pen"></i>
 						</a>
 						<a class="me-1 btn btn-danger btn-red" href="{{ path('delete_article', {id: article.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet article ?')">

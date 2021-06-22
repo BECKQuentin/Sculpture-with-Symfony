@@ -46,14 +46,15 @@ class ArticleFormType extends AbstractType
             ->add('images', FileType::class, [                
                 'label' => 'Image',
                 'multiple' => true,
-                'mapped' => false                
+                'mapped' => false,
+                'required' => false           
             ])
             
            
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter un article',
                 'attr' => [
-                    'class' => 'btn-success mt-3'
+                    'class' => 'btn-success btn-green mt-3'
                 ]
             ])
         ;

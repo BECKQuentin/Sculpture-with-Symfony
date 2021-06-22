@@ -4,9 +4,9 @@
 
 {% block body %}
 
-	<div class="portfolio">
+	{# <div class="portfolio">
 		<a href="Portfolio/portfolio.html" target="_blank">Voir mon Portfolio</a>
-	</div>
+	</div> #}
 	
 	<div class="titre_accueil">				
 		<div class="titre_accueil_flex">
@@ -58,10 +58,10 @@
 	</div>
 			
 	<div class="novelties text-center mt-5">
-		<h1 class="my-3">Nouveautés</h1>
+		<h1 class="mt-3">Nouveautés</h1>
 		
 		
-		<div class="novelties_card_box py-3">
+		<div class="novelties_card_box py-5">
 			{% for article in recentsArticles %}
 				<a class="m-3" href="{{path('article', {id:article.id}) }}">
 					<div class="novelties_card card" style="width: 18rem;">

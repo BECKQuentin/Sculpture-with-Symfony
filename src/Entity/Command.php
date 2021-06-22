@@ -30,9 +30,9 @@ class Command
     private $article;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $status = [];
+    private $status;
 
     public function getId(): ?int
     {
@@ -63,15 +63,16 @@ class Command
         return $this;
     }
 
-    public function getStatus(): ?array
+    public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    public function setStatus(?array $status): self
+    public function setStatus(string $status): self
     {
         $this->status = $status;
 
         return $this;
     }
+    
 }
